@@ -1,3 +1,3 @@
-module "minimal" {
-  source = "../../"
+module "aws" {
+  source = "git::https://github.com/Datatamer/terraform-aws-es"
 }
