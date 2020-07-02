@@ -17,6 +17,7 @@ module "tamr-es-cluster" {
 This modules creates:
 * a new Elasticsearch domain in AWS
 * optionally, a new IAM service linked role for ES on the AWS account
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
