@@ -1,7 +1,7 @@
 module "aws-es" {
-  source                        = "./modules/aws-es.tf"
+  source                        = "./modules"
   domain_name                   = var.domain_name
-  elasticsearch_version         = var.version
+  elasticsearch_version         = var.es_version
   instance_count                = var.instance_count
   instance_type                 = var.instance_type
   subnet_ids                    = var.subnet_ids
@@ -12,5 +12,4 @@ module "aws-es" {
   volume_size                   = var.ebs_volume_size
   volume_type                   = var.ebs_volume_type
   tags                          = var.additional_tags
-
 }

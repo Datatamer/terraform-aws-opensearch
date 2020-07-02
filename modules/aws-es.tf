@@ -1,6 +1,6 @@
-resource "aws_elasticsearch_domain" "es-cluster" {
+resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   domain_name           = var.domain_name
-  elasticsearch_version = var.version
+  elasticsearch_version = var.es_version
 
   cluster_config {
     instance_count = var.instance_count
@@ -9,7 +9,6 @@ resource "aws_elasticsearch_domain" "es-cluster" {
 
   vpc_options {
     subnet_ids = var.subnet_ids
-
     security_group_ids = var.security_group_ids
   }
 
