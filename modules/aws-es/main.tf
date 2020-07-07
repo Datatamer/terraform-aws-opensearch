@@ -29,12 +29,12 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   tags = var.additional_tags
 
   depends_on = [
-    "aws_iam_service_linked_role.es",
+    aws_iam_service_linked_role.es,
   ]
 }
 
 resource "aws_iam_service_linked_role" "es" {
-  count            = "${var.create_new_service_role == true ? 1 : 0}"
+  count            = var.create_new_service_role == true ? 1 : 0
   aws_service_name = "es.amazonaws.com"
 }
 

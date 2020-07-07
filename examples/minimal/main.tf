@@ -1,3 +1,4 @@
-module "aws" {
-  source = "git::https://github.com/Datatamer/terraform-aws-es"
+module "aws-es" {
+  source = "../../"
+  aws_account_id = "123456789"
 }
