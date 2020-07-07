@@ -10,13 +10,13 @@ This is the most basic example of what it would look like to use this module.
 module "tamr-es-cluster" {
   source = "git::https://github.com/Datatamer/terraform-aws-es?ref=0.1.0"
   aws_account_id = "123456789"
+  vpc_id = "my-aws-vpc"
 }
 ```
 
 # Resources Created
 This modules creates:
-* a new Elasticsearch domain in AWS
-* optionally, a new IAM service linked role for ES on the AWS account
+* a new security group with one or two attached rules (HTTP and/or HTTPS enabled)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -34,13 +34,13 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | aws\_account\_id | AWS account ID to use | `string` | n/a | yes |
-| additional\_tags | Additional tags to be attached to the ES domain | `map(string)` | <pre>{<br>  "Author": "Tamr"<br>}</pre> | no |
+| additional\_tags | Additional tags to be attached to the ES domain | `map(string)` | `{}` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
 | create\_new\_service\_role | Whether to create a new IAM service linked role for ES. This only needs to happen once per account | `bool` | `"true"` | no |
 | domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes | `number` | `0` | no |
-| ebs\_volume\_size | The size of EBS volumes attached to data nodes (in GB) | `number` | `10` | no |
+| ebs\_volume\_size | The size of EBS volumes attached to data nodes (in GB) | `number` | `100` | no |
 | ebs\_volume\_type | The type of EBS volumes attached to data nodes | `string` | `"gp2"` | no |
 | es\_version | Version of ES to deploy | `string` | `"6.8"` | no |
 | instance\_count | Number of instances to launch in the ES domain | `number` | `2` | no |
@@ -51,7 +51,9 @@ No requirements.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| tamr\_es\_domain\_id | ID of the ES domain created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

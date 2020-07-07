@@ -53,7 +53,7 @@ variable "ebs_iops" {
 }
 
 variable "ebs_volume_size" {
-  default     = 10
+  default     = 100
   type        = number
   description = "The size of EBS volumes attached to data nodes (in GB)"
 }
@@ -65,7 +65,7 @@ variable "ebs_volume_type" {
 }
 
 variable "additional_tags" {
-  default     = { Author : "Tamr" }
+  default     = {}
   type        = map(string)
   description = "Additional tags to be attached to the ES domain"
 }
