@@ -47,13 +47,13 @@ variable "ebs_enabled" {
 }
 
 variable "ebs_iops" {
-  default     = 0
+  default     = 1000
   type        = number
   description = "The baseline I/O performance of EBS volumes attached to nodes"
 }
 
 variable "ebs_volume_size" {
-  default     = 10
+  default     = 100
   type        = number
   description = "The size of EBS volumes attached to data nodes (in GB)"
 }
@@ -81,10 +81,16 @@ variable "aws_account_id" {
   description = "AWS account ID to use"
 }
 
+variable "linked_service_role" {
+  type        = string
+  description = "Name of the IAM linked service role that enables ES. This value must take the form of aws_iam_service_linked_role.<name> and must be set if create_new_service_role is false"
+  default     = "aws_iam_service_linked_role.es"
+}
+
 variable "create_new_service_role" {
   default     = true
   type        = bool
-  description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account"
+  description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
 }
 
 variable "vpc_id" {

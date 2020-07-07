@@ -12,7 +12,6 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
     security_group_ids = var.security_group_ids
   }
 
-  //to do: pull into data block
   access_policies = data.aws_iam_policy_document.es-access-policy.json
 
   snapshot_options {
@@ -29,7 +28,7 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   tags = var.additional_tags
 
   depends_on = [
-    aws_iam_service_linked_role.es,
+    var.linked_service_role,
   ]
 }
 
