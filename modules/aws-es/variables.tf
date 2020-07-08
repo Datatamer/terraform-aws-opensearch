@@ -64,7 +64,7 @@ variable "ebs_volume_type" {
   description = "The type of EBS volumes attached to data nodes"
 }
 
-variable "es_tags" {
+variable "additional_tags" {
   default     = {}
   type        = map(string)
   description = "Additional tags to be attached to the ES domain"
@@ -83,59 +83,12 @@ variable "aws_account_id" {
 
 variable "linked_service_role" {
   type        = string
-  description = "Name of the IAM linked service role that enables ES. This value must take the form of aws_iam_service_linked_role.<name> and must be set if create_new_service_role is false"
+  description = "Name of the IAM linked service role that enables ES. This value must take the form of aws_iam_service_linked_role.<name>"
   default     = "aws_iam_service_linked_role.es"
 }
 
 variable "create_new_service_role" {
-  default     = true
+  default     = "true"
   type        = bool
   description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
-}
-
-variable "vpc_id" {
-  type        = string
-  description = "The ID of the VPC in which to attach the security group"
-}
-
-variable "sg_name" {
-  type        = string
-  description = "Security Group to create"
-  default     = "es-security-group"
-}
-
-variable "revoke_rules_on_delete" {
-  type        = bool
-  description = "Whether to revoke rules from the SG upon deletion"
-  default     = true
-}
-
-variable "enable_https" {
-  type        = bool
-  description = "If set to true, enables SSH"
-  default     = true
-}
-
-variable "enable_http" {
-  type        = bool
-  description = "If set to true, enables SSH"
-  default     = true
-}
-
-variable "ingress_cidr_blocks" {
-  type        = list(string)
-  description = "CIDR blocks to attach to security groups for ingress"
-  default     = []
-}
-
-variable "ingress_security_groups" {
-  type        = list(string)
-  description = "Existing security groups to attch to new security groups for ingress"
-  default     = []
-}
-
-variable "sg_tags" {
-  type        = map(string)
-  description = "Additional tags to be attached to the security group"
-  default     = {}
 }

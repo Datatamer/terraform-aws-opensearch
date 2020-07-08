@@ -1,9 +1,9 @@
-output "null_resource_id" {
-  value       = "${null_resource.foo.id}"
-  description = "An arbitrary value that changes each time the resource is replaced."
+output "tamr_es_domain_id" {
+  value       = module.tamr-es-cluster.tamr_es_domain_id
+  description = "ID of the security group created"
 }
 
-output "example_value" {
-  value       = "${var.example}"
-  description = "Example variable."
+output "es_security_group_id" {
+  value       = module.elasticsearch-sg.es_security_group_id
+  description = "ID of the security group created"
 }
