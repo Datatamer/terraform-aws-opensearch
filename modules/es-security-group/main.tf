@@ -3,6 +3,8 @@ resource "aws_security_group" "elasticsearch-sg" {
   vpc_id                 = var.vpc_id
   revoke_rules_on_delete = var.revoke_rules_on_delete
   tags                   = var.additional_tags
+  # [AWS018] should include a description for auditing purposes.
+  description = "[TERRAFORM-MANAGED] Security group for accessing Elasticsearch"
 }
 
 // local variables to indicate whether to use CIDR blocks or security groups

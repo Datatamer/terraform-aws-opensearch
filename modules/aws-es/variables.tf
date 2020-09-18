@@ -117,4 +117,3 @@ variable "node_to_node_encryption_enabled" {
   type        = bool
   description = "Whether to enable node-to-node encryption"
 }
-
