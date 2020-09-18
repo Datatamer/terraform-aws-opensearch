@@ -13,7 +13,6 @@ module "tamr-es-cluster" {
   ebs_volume_type                 = var.ebs_volume_type
   additional_tags                 = var.es_tags
   aws_region                      = var.aws_region
-  aws_account_id                  = var.aws_account_id
   create_new_service_role         = var.create_new_service_role
   kms_key_id                      = var.kms_key_id
   enforce_https                   = var.enforce_https

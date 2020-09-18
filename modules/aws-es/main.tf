@@ -51,6 +51,8 @@ resource "aws_iam_service_linked_role" "es" {
   aws_service_name = "es.amazonaws.com"
 }
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "es-access-policy" {
   version = "2012-10-17"
   statement {
@@ -59,7 +61,7 @@ data "aws_iam_policy_document" "es-access-policy" {
       "es:*"
     ]
     resources = [
-      "arn:aws:es:${var.aws_region}:${var.aws_account_id}:domain/${var.domain_name}/*"
+      "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"
     ]
 
     principals {
