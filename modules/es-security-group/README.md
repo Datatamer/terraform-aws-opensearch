@@ -7,9 +7,9 @@ An inline example implementation of the module is implemented in the examples fo
 This is the most basic example of what it would look like to use this module.
 
 ```
-module "tamr-es-sg" {
-  source = "git::https://github.com/Datatamer/terraform-aws-es?ref=0.1.0"
-  aws_account_id = "123456789"
+module "tamr-es-cluster" {
+  source = "git::https://github.com/Datatamer/terraform-aws-es//modules/es-security-group?ref=0.2.0"
+  vpc_id      = "vpc-id"
 }
 ```
 
