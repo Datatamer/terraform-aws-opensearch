@@ -25,6 +25,20 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
     volume_type = var.ebs_volume_type
   }
 
+  encrypt_at_rest {
+    enabled    = true
+    kms_key_id = var.kms_key_id
+  }
+
+  domain_endpoint_options {
+    enforce_https       = var.enforce_https
+    tls_security_policy = var.tls_security_policy
+  }
+  node_to_node_encryption {
+    enabled = var.node_to_node_encryption_enabled
+  }
+
+
   tags = var.additional_tags
 
   depends_on = [
@@ -49,7 +63,7 @@ data "aws_iam_policy_document" "es-access-policy" {
     ]
 
     principals {
-      type = "AWS"
+      type        = "AWS"
       identifiers = ["*"]
     }
   }

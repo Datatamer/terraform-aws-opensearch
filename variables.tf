@@ -139,3 +139,29 @@ variable "sg_tags" {
   description = "Additional tags to be attached to the security group"
   default     = {}
 }
+
+variable "kms_key_id" {
+  description = <<EOF
+  The KMS key id to encrypt the Elasticsearch domain with.
+  If not specified then it defaults to using the aws/es service KMS key
+  EOF
+  default     = null
+}
+
+variable "enforce_https" {
+  description = "Whether or not to require HTTPS on the domain endpoint"
+  default     = true
+}
+
+variable "tls_security_policy" {
+  default     = null
+  description = <<EOF
+  The name of the TLS security policy that needs to be applied to the HTTPS endpoint.
+  Valid values: Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07.
+  EOF
+}
+
+variable "node_to_node_encryption_enabled" {
+  default     = true
+  description = "Whether to enable node-to-node encryption"
+}

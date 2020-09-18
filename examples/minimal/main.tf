@@ -4,7 +4,7 @@ module "tamr-es-cluster" {
 }
 
 module "elasticsearch-sg" {
-  source = "../../"
+  source         = "../../"
   aws_account_id = "123456789"
-  vpc_id = "my-aws-vpc"
+  vpc_id         = "my-aws-vpc"
 }
