@@ -23,7 +23,6 @@ variable "instance_type" {
 }
 
 variable "subnet_ids" {
-  default     = []
   type        = list(string)
   description = "List of subnet IDs for the ES domain to be created in"
 }
@@ -47,9 +46,12 @@ variable "ebs_enabled" {
 }
 
 variable "ebs_iops" {
-  default     = 1000
+  default     = null
   type        = number
-  description = "The baseline I/O performance of EBS volumes attached to nodes"
+  description = <<EOF
+  The baseline I/O performance of EBS volumes attached to nodes.
+  Iops is only valid when volume type is io1
+  EOF
 }
 
 variable "ebs_volume_size" {
@@ -76,11 +78,6 @@ variable "aws_region" {
   description = "AWS region to launch in"
 }
 
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account ID to use"
-}
-
 variable "linked_service_role" {
   type        = string
   description = "Name of the IAM linked service role that enables ES. This value must take the form of aws_iam_service_linked_role.<name>"
@@ -91,4 +88,32 @@ variable "create_new_service_role" {
   default     = "true"
   type        = bool
   description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
+}
+
+variable "kms_key_id" {
+  default     = null
+  type        = string
+  description = <<EOF
+  The KMS key id to encrypt the Elasticsearch domain with.
+  If not specified then it defaults to using the aws/es service KMS key
+  EOF
+}
+
+variable "enforce_https" {
+  default     = true
+  type        = bool
+  description = "Whether or not to require HTTPS on the domain endpoint"
+}
+variable "tls_security_policy" {
+  default     = "Policy-Min-TLS-1-2-2019-07"
+  type        = string
+  description = <<EOF
+  The name of the TLS security policy that needs to be applied to the HTTPS endpoint.
+  Valid values: Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07.
+  EOF
+}
+variable "node_to_node_encryption_enabled" {
+  default     = true
+  type        = bool
+  description = "Whether to enable node-to-node encryption"
 }

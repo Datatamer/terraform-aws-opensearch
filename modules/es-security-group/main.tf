@@ -3,6 +3,8 @@ resource "aws_security_group" "elasticsearch-sg" {
   vpc_id                 = var.vpc_id
   revoke_rules_on_delete = var.revoke_rules_on_delete
   tags                   = var.additional_tags
+  # [AWS018] should include a description for auditing purposes.
+  description = "[TERRAFORM-MANAGED] Security group for accessing Elasticsearch"
 }
 
 // local variables to indicate whether to use CIDR blocks or security groups
@@ -11,7 +13,7 @@ locals {
   security_group_ingress_rule = length(var.ingress_security_groups) > 0 ? length(var.ingress_security_groups) : 0
 }
 
-resource "aws_security_group_rule" "https_access_cidr"{
+resource "aws_security_group_rule" "https_access_cidr" {
   count             = var.enable_https && (local.cidr_block_ingress_rule > 0) ? 1 : 0
   description       = "HTTPS access from allowed CIDR blocks"
   security_group_id = aws_security_group.elasticsearch-sg.id
@@ -22,7 +24,7 @@ resource "aws_security_group_rule" "https_access_cidr"{
   cidr_blocks       = var.ingress_cidr_blocks
 }
 
-resource "aws_security_group_rule" "https_access_sg"{
+resource "aws_security_group_rule" "https_access_sg" {
   count                    = var.enable_https && (local.security_group_ingress_rule > 0) ? 1 : 0
   description              = "HTTPS access from allowed security groups"
   security_group_id        = aws_security_group.elasticsearch-sg.id
@@ -33,7 +35,7 @@ resource "aws_security_group_rule" "https_access_sg"{
   source_security_group_id = var.ingress_security_groups[count.index]
 }
 
-resource "aws_security_group_rule" "http_access_cidr"{
+resource "aws_security_group_rule" "http_access_cidr" {
   count             = var.enable_http && (local.cidr_block_ingress_rule > 0) ? 1 : 0
   description       = "HTTP access from allowed CIDR blocks"
   security_group_id = aws_security_group.elasticsearch-sg.id
@@ -44,7 +46,7 @@ resource "aws_security_group_rule" "http_access_cidr"{
   cidr_blocks       = var.ingress_cidr_blocks
 }
 
-resource "aws_security_group_rule" "http_access_sg"{
+resource "aws_security_group_rule" "http_access_sg" {
   count                    = var.enable_http && (local.security_group_ingress_rule > 0) ? 1 : 0
   description              = "HTTP access from allowed security groups"
   security_group_id        = aws_security_group.elasticsearch-sg.id
