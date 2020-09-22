@@ -8,8 +8,8 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "tamr-es-cluster" {
-  source = "git::https://github.com/Datatamer/terraform-aws-es//modules/aws-es?ref=0.2.0"
-  subnet_ids  = ["subnet-id"]
+  source     = "git::https://github.com/Datatamer/terraform-aws-es//modules/aws-es?ref=0.2.0"
+  subnet_ids = ["subnet-id"]
 }
 ```
 
@@ -20,7 +20,9 @@ This modules creates:
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
 
 ## Providers
 

@@ -1,27 +1,31 @@
-# AWS ES Security Group Module
-This is a terraform module for a security groups for ES on AWS.
-This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
+# Tamr AWS ES Security Group Terraform Module
+This terraform module creates a security group for ES on AWS.
+This repo follows the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
-An inline example implementation of the module is implemented in the examples folder.
-This is the most basic example of what it would look like to use this module.
-
+## Basic
+Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "tamr-es-cluster" {
   source = "git::https://github.com/Datatamer/terraform-aws-es//modules/es-security-group?ref=0.2.0"
-  vpc_id      = "vpc-id"
+  vpc_id = "vpc-id"
 }
 ```
+## Minimal
+Smallest complete fully working example. This example might require extra resources to run the example.
+- [Minimal](https://github.com/Datatamer/terraform-aws-es/tree/master/examples/minimal)
 
 # Resources Created
 This modules creates:
 * a new Elasticsearch domain in AWS
-* optionally, a new IAM service linked role for ES on the AWS account
+* optionally, a new IAM service linked role for ES
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
 
 ## Providers
 
