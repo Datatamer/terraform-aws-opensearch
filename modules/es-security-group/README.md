@@ -11,9 +11,6 @@ module "tamr-es-cluster" {
   vpc_id = "vpc-id"
 }
 ```
-## Minimal
-Smallest complete fully working example. This example might require extra resources to run the example.
-- [Minimal](https://github.com/Datatamer/terraform-aws-es/tree/master/examples/minimal)
 
 # Resources Created
 This modules creates:
@@ -26,12 +23,13 @@ This modules creates:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 2.45.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 2.45.0 |
 
 ## Inputs
 

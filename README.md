@@ -27,12 +27,11 @@ This module creates:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 2.45.0 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| aws | >= 2.45.0 |
+No provider.
 
 ## Inputs
 
