@@ -59,6 +59,7 @@ This modules creates:
 
 | Name | Description |
 |------|-------------|
+| tamr\_es\_domain\_endpoint | Endpoint of ES domain created |
 | tamr\_es\_domain\_id | ID of the ES domain created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
