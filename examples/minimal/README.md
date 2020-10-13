@@ -17,8 +17,9 @@ No input.
 
 | Name | Description |
 |------|-------------|
-| es\_security\_group\_id | ID of the security group created |
+| es\_security\_group\_id | ID of the ES domain created |
 | subnet\_id | n/a |
+| tamr\_es\_domain\_endpoint | Endpoint of ES domain created |
 | tamr\_es\_domain\_id | ID of the security group created |
 | vpc\_id | n/a |
 
