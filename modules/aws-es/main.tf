@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "es-access-policy" {
       "es:*"
     ]
     resources = [
-      "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"
+      "arn:${var.arn_partition}:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"
     ]
 
     principals {

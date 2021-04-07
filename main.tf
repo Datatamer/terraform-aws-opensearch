@@ -18,6 +18,7 @@ module "tamr-es-cluster" {
   enforce_https                   = var.enforce_https
   tls_security_policy             = var.tls_security_policy
   node_to_node_encryption_enabled = var.node_to_node_encryption_enabled
+  arn_partition                   = var.arn_partition
 }
 
 module "elasticsearch-sg" {
