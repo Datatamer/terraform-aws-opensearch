@@ -1,5 +1,8 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v0.3.0 - April 7th 2021
+*  Adds new variable `arn_partition` to set the partition of any ARNs referenced in this module
+
 ## v0.2.1 - October 13th 2020
 * Adds output `tamr_es_domain_endpoint`
 
