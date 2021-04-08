@@ -6,7 +6,7 @@ This terraform module creates an Elasticsearch (ES) domain on AWS.
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "tamr-es-cluster" {
-  source     = "git::https://github.com/Datatamer/terraform-aws-es?ref=0.2.0"
+  source     = "git::https://github.com/Datatamer/terraform-aws-es?ref=0.3.0"
   vpc_id     = "vpc-id"
   subnet_ids = ["subnet-id"]
 }
@@ -39,6 +39,7 @@ No provider.
 |------|-------------|------|---------|:--------:|
 | subnet\_ids | List of subnet IDs for the ES domain to be created in | `list(string)` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
+| arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
 | create\_new\_service\_role | Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked\_service\_role is required | `bool` | `true` | no |
 | domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |

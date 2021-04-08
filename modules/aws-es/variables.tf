@@ -117,3 +117,16 @@ variable "node_to_node_encryption_enabled" {
   type        = bool
   description = "Whether to enable node-to-node encryption"
 }
+
+variable "arn_partition" {
+  type        = string
+  description = <<EOF
+  The partition in which the resource is located. A partition is a group of AWS Regions.
+  Each AWS account is scoped to one partition.
+  The following are the supported partitions:
+    aws -AWS Regions
+    aws-cn - China Regions
+    aws-us-gov - AWS GovCloud (US) Regions
+  EOF
+  default     = "aws"
+}
