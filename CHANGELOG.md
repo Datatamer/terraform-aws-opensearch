@@ -1,5 +1,9 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v1.0.0 - April 12th 2021
+* Updates minimum Terraform version to 13
+* Updates minimum AWS provider version to 3.36.0
+
 ## v0.3.0 - April 7th 2021
 *  Adds new variable `arn_partition` to set the partition of any ARNs referenced in this module
 
