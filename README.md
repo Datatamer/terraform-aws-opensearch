@@ -6,7 +6,7 @@ This terraform module creates an Elasticsearch (ES) domain on AWS.
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "tamr-es-cluster" {
-  source     = "git::https://github.com/Datatamer/terraform-aws-es?ref=0.3.0"
+  source     = "git::https://github.com/Datatamer/terraform-aws-es?ref=1.0.0"
   vpc_id     = "vpc-id"
   subnet_ids = ["subnet-id"]
 }
@@ -26,8 +26,8 @@ This module creates:
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
-| aws | >= 2.45.0 |
+| terraform | >= 0.13 |
+| aws | >= 3.36.0 |
 
 ## Providers
 
