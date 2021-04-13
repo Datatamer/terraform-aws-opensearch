@@ -7,7 +7,7 @@ This repo follows the [terraform standard module structure](https://www.terrafor
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "tamr-es-cluster" {
-  source = "git::https://github.com/Datatamer/terraform-aws-es//modules/es-security-group?ref=1.0.0"
+  source = "git::https://github.com/Datatamer/terraform-aws-es//modules/es-security-group?ref=1.0.1"
   vpc_id = "vpc-id"
 }
 ```

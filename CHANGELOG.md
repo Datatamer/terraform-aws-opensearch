@@ -1,5 +1,8 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v1.0.1 - April 13th 2021
+* Fixes a deprecation warning about interpolation-only expressions
+
 ## v1.0.0 - April 12th 2021
 * Updates minimum Terraform version to 13
 * Updates minimum AWS provider version to 3.36.0
