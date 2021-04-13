@@ -8,7 +8,7 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "tamr-es-cluster" {
-  source     = "git::https://github.com/Datatamer/terraform-aws-es//modules/aws-es?ref=1.0.0"
+  source     = "git::https://github.com/Datatamer/terraform-aws-es//modules/aws-es?ref=1.0.1"
   subnet_ids = ["subnet-id"]
 }
 ```
