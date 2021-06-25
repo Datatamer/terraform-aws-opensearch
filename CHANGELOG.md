@@ -15,6 +15,7 @@
   * `es_security_group_id` -> `es_security_group_ids`
 * Removes the security groups module
 * Adds a new ports module
+* Updates example with security group creation and new variable `name-prefix`
 
 ## v1.0.1 - April 13th 2021
 * Fixes a deprecation warning about interpolation-only expressions
