@@ -2,15 +2,6 @@
 This terraform module creates an Elasticsearch (ES) domain on AWS.
 
 # Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "tamr-es-cluster" {
-  source     = "git::https://github.com/Datatamer/terraform-aws-es?ref=1.0.1"
-  vpc_id     = "vpc-id"
-  subnet_ids = ["subnet-id"]
-}
-```
 ## Minimal
 Smallest complete fully working example. This example might require extra resources to run the example.
 - [Minimal](https://github.com/Datatamer/terraform-aws-es/tree/master/examples/minimal)
@@ -19,7 +10,6 @@ Smallest complete fully working example. This example might require extra resour
 This module creates:
 * a new Elasticsearch domain in AWS
 * optionally, a new IAM service linked role for ES on the AWS account
-* a security group to attach to the ES domain, with HTTP and/or HTTPS enabled
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -70,7 +60,7 @@ No provider.
 
 | Name | Description |
 |------|-------------|
-| es\_security\_group\_id | ID of the security group created |
+| es\_security\_group\_ids | List of security group IDs of the security groups used by ES |
 | tamr\_es\_domain\_endpoint | Endpoint of ES domain created |
 | tamr\_es\_domain\_id | ID of the ES domain created |
 

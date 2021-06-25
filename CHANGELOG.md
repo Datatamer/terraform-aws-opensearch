@@ -1,5 +1,21 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v2.0.0 - October 13th 2020
+* New input variables for the main module:
+    * `security_group_ids`
+* Removed input variables from the main module:
+  * `ingress_cidr_blocks`
+  * `ingress_security_groups`
+  * `egress_cidr_blocks`
+  * `egress_security_groups`
+  * `ports`
+  * `security_group_tags`
+  * `sg_name`
+* Outputs changed in main module
+  * `es_security_group_id` -> `es_security_group_ids`
+* Removes the security groups module
+* Adds a new ports module
+
 ## v1.0.1 - April 13th 2021
 * Fixes a deprecation warning about interpolation-only expressions
 

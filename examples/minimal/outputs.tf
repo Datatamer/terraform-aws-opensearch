@@ -9,7 +9,7 @@ output "tamr_es_domain_endpoint" {
 }
 
 output "es_security_group_id" {
-  value       = module.tamr-es-cluster.es_security_group_id
+  value       = module.tamr-es-cluster.es_security_group_ids
   description = "ID of the ES domain created"
 }
 

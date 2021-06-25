@@ -5,7 +5,7 @@ module "tamr-es-cluster" {
   instance_count                  = var.instance_count
   instance_type                   = var.instance_type
   subnet_ids                      = var.subnet_ids
-  security_group_ids              = [module.elasticsearch-sg.es_security_group_id]
+  security_group_ids              = var.security_group_ids
   snapshot_start_hour             = var.snapshot_start_hour
   ebs_enabled                     = var.ebs_enabled
   ebs_iops                        = var.ebs_iops
@@ -19,16 +19,4 @@ module "tamr-es-cluster" {
   tls_security_policy             = var.tls_security_policy
   node_to_node_encryption_enabled = var.node_to_node_encryption_enabled
   arn_partition                   = var.arn_partition
-}
-
-module "elasticsearch-sg" {
-  source                  = "./modules/es-security-group"
-  sg_name                 = var.sg_name
-  vpc_id                  = var.vpc_id
-  revoke_rules_on_delete  = var.revoke_rules_on_delete
-  additional_tags         = var.sg_tags
-  ingress_cidr_blocks     = var.ingress_cidr_blocks
-  ingress_security_groups = var.ingress_security_groups
-  enable_https            = var.enable_https
-  enable_http             = var.enable_http
 }

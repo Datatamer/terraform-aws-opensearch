@@ -8,7 +8,7 @@ output "tamr_es_domain_endpoint" {
   description = "Endpoint of ES domain created"
 }
 
-output "es_security_group_id" {
-  value       = module.elasticsearch-sg.es_security_group_id
-  description = "ID of the security group created"
+output "es_security_group_ids" {
+  value       = var.security_group_ids
+  description = "List of security group IDs of the security groups used by ES"
 }
