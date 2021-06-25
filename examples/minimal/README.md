@@ -11,7 +11,9 @@ No requirements.
 
 ## Inputs
 
-No input.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| name-prefix | A string to prepend to names of resources created by this example | `any` | n/a | yes |
 
 ## Outputs
 
