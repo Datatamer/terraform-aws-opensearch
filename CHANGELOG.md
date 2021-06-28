@@ -1,8 +1,5 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
-## v2.1.0 - June 28, 2021
-* Adds allowed script types setting
-
 ## v2.0.0 - October 13th 2020
 * New input variables for the main module:
     * `security_group_ids`
