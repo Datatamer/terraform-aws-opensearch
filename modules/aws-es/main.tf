@@ -44,10 +44,6 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   depends_on = [
     var.linked_service_role,
   ]
-
-  advanced_options = {
-    "script.allowed_types" = "inline"
-  }
 }
 
 resource "aws_iam_service_linked_role" "es" {
