@@ -3,9 +3,6 @@ locals {
   public_subnets  = ["172.19.3.0/24"]
 }
 
-provider "aws" {
-}
-
 data "aws_region" "current" {}
 
 module "vpc" {
@@ -61,6 +58,13 @@ module "tamr-es-cluster" {
   ebs_volume_size         = 30
 }
 
+## If you don't have this ES Role created yet in your AWS Account, this data source will raise an error.
+## To fix the error:
+## - comment this data source,
+## - in the module tamr-es-cluster:
+##     - remove the argument linked_service_role,
+##     - update the argument create_new_service_role = true
+#####
 data "aws_iam_role" "es" {
   name = "AWSServiceRoleForAmazonElasticsearchService"
 }
