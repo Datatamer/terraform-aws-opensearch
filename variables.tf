@@ -66,10 +66,16 @@ variable "ebs_volume_type" {
   description = "The type of EBS volumes attached to data nodes"
 }
 
-variable "additional_tags" {
-  default     = {}
+variable "es_tags" {
   type        = map(string)
-  description = "Additional tags to be attached to the ES domain"
+  description = "[DEPRECATED: Use `tags` instead] Additional tags to be attached to the ES domain and associated resources."
+  default     = {}
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources. Replaces `es_tags`."
+  default     = {}
 }
 
 variable "aws_region" {

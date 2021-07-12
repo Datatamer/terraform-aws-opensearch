@@ -1,8 +1,9 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
-
 ## v2.1.0 - July 12nd 2021
-* Replaces `var.es_tags` for `var.additional_tags`
+* Adds new variable `tags` to set tags for all resources
+* Deprecates `es_tags` in favor of `tags`
+
 ## v2.0.0 - October 13th 2020
 * New input variables for the main module:
     * `security_group_ids`

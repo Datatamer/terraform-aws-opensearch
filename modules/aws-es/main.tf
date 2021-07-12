@@ -39,7 +39,7 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   }
 
 
-  tags = var.additional_tags
+  tags = var.tags
 
   depends_on = [
     var.linked_service_role,
