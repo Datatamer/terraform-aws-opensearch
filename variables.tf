@@ -66,7 +66,7 @@ variable "ebs_volume_type" {
   description = "The type of EBS volumes attached to data nodes"
 }
 
-variable "es_tags" {
+variable "additional_tags" {
   default     = {}
   type        = map(string)
   description = "Additional tags to be attached to the ES domain"
