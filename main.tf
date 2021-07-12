@@ -1,5 +1,5 @@
 locals {
-  effective_tags = length(var.es_tags) > 0 ? var.es_tags : var.tags
+  effective_tags = length(var.tags) > 0 ? var.tags : var.es_tags
 }
 
 module "tamr-es-cluster" {
@@ -15,7 +15,7 @@ module "tamr-es-cluster" {
   ebs_iops                        = var.ebs_iops
   ebs_volume_size                 = var.ebs_volume_size
   ebs_volume_type                 = var.ebs_volume_type
-  tags                            = var.effective_tags
+  tags                            = local.effective_tags
   aws_region                      = var.aws_region
   create_new_service_role         = var.create_new_service_role
   kms_key_id                      = var.kms_key_id
