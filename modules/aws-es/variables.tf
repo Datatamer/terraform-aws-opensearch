@@ -69,7 +69,7 @@ variable "ebs_volume_type" {
 variable "tags" {
   default     = {}
   type        = map(string)
-  description = "Additional tags to be attached to the ES domain"
+  description = "A map of tags to add to all resources."
 }
 
 variable "aws_region" {
