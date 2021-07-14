@@ -40,7 +40,7 @@ No provider.
 | enable\_http | If set to true, enables SSH | `bool` | `true` | no |
 | enable\_https | If set to true, enables SSH | `bool` | `true` | no |
 | enforce\_https | Whether or not to require HTTPS on the domain endpoint | `bool` | `true` | no |
-| es\_tags | Additional tags to be attached to the ES domain | `map(string)` | `{}` | no |
+| es\_tags | [DEPRECATED: Use `tags` instead] Additional tags to be attached to the ES domain and associated resources. | `map(string)` | `{}` | no |
 | es\_version | Version of ES to deploy | `string` | `"6.8"` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
@@ -54,6 +54,7 @@ No provider.
 | sg\_name | Security Group to create | `string` | `"es-security-group"` | no |
 | sg\_tags | Additional tags to be attached to the security group | `map(string)` | `{}` | no |
 | snapshot\_start\_hour | Hour when an automated daily snapshot of the indices is taken | `number` | `0` | no |
+| tags | A map of tags to add to all resources. Replaces `es_tags`. | `map(string)` | `{}` | no |
 | tls\_security\_policy | The name of the TLS security policy that needs to be applied to the HTTPS endpoint.<br>  Valid values: Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07. | `string` | `"Policy-Min-TLS-1-2-2019-07"` | no |
 
 ## Outputs

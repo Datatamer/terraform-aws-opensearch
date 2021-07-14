@@ -66,10 +66,10 @@ variable "ebs_volume_type" {
   description = "The type of EBS volumes attached to data nodes"
 }
 
-variable "additional_tags" {
+variable "tags" {
   default     = {}
   type        = map(string)
-  description = "Additional tags to be attached to the ES domain"
+  description = "A map of tags to add to all resources."
 }
 
 variable "aws_region" {
