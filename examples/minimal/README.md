@@ -14,6 +14,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | name-prefix | A string to prepend to names of resources created by this example | `any` | n/a | yes |
+| tags | A map of tags to add to all resources created by this example. | `map(string)` | <pre>{<br>  "Author": "Tamr",<br>  "Environment": "Example"<br>}</pre> | no |
 
 ## Outputs
 

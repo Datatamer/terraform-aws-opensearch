@@ -36,7 +36,6 @@ This modules creates:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | subnet\_ids | List of subnet IDs for the ES domain to be created in | `list(string)` | n/a | yes |
-| additional\_tags | Additional tags to be attached to the ES domain | `map(string)` | `{}` | no |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
 | create\_new\_service\_role | Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked\_service\_role is required | `bool` | `"true"` | no |
@@ -54,6 +53,7 @@ This modules creates:
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |
 | snapshot\_start\_hour | Hour when an automated daily snapshot of the indices is taken | `number` | `0` | no |
+| tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | tls\_security\_policy | The name of the TLS security policy that needs to be applied to the HTTPS endpoint.<br>  Valid values: Policy-Min-TLS-1-0-2019-07 and Policy-Min-TLS-1-2-2019-07. | `string` | `"Policy-Min-TLS-1-2-2019-07"` | no |
 
 ## Outputs
