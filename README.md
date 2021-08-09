@@ -1,6 +1,26 @@
 # Tamr AWS Elasticsearch Terraform Module
 This terraform module creates an Elasticsearch (ES) domain on AWS.
 
+**Prerequisite**
+
+This module requires an [IAM service linked role](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/slr-es.html) for ES on the AWS account.
+
+To create an ES service role in terraform:
+```
+resource "aws_iam_service_linked_role" "es-service-role" {
+  aws_service_name = "es.amazonaws.com"
+}
+```
+
+There can be only one service linked role for per AWS account.
+
+You may run into an error like this when trying to remove the ES service linked role if there is still an Elasticsearch domain in the account:
+```
+Error: Error waiting for role (arn:aws:iam::000000000000:role/aws-service-role/es.amazonaws.com/AWSServiceRoleForAmazonElasticsearchService) to be deleted: unexpected state 'FAILED', wanted target 'SUCCEEDED'.
+```
+
+You will need to ensure all the domains are completely removed before attempting to remove the ES linked service role. If it appears like all the domains have already been removed, you can try again.
+
 # Examples
 ## Minimal
 Smallest complete fully working example. This example might require extra resources to run the example.
@@ -9,7 +29,6 @@ Smallest complete fully working example. This example might require extra resour
 # Resources Created
 This module creates:
 * a new Elasticsearch domain in AWS
-* optionally, a new IAM service linked role for ES on the AWS account
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -31,7 +50,6 @@ No provider.
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
-| create\_new\_service\_role | Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked\_service\_role is required | `bool` | `true` | no |
 | domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes.<br>  Iops is only valid when volume type is io1 | `number` | `null` | no |
@@ -47,7 +65,6 @@ No provider.
 | instance\_count | Number of instances to launch in the ES domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
 | kms\_key\_id | The KMS key id to encrypt the Elasticsearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
-| linked\_service\_role | Name of the IAM linked service role that enables ES. This value must take the form of aws\_iam\_service\_linked\_role.<name> and must be set if create\_new\_service\_role is false | `string` | `"aws_iam_service_linked_role.es"` | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | revoke\_rules\_on\_delete | Whether to revoke rules from the SG upon deletion | `bool` | `true` | no |
 | security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |

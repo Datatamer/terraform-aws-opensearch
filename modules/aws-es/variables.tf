@@ -78,18 +78,6 @@ variable "aws_region" {
   description = "AWS region to launch in"
 }
 
-variable "linked_service_role" {
-  type        = string
-  description = "Name of the IAM linked service role that enables ES. This value must take the form of aws_iam_service_linked_role.<name>"
-  default     = "aws_iam_service_linked_role.es"
-}
-
-variable "create_new_service_role" {
-  default     = "true"
-  type        = bool
-  description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
-}
-
 variable "kms_key_id" {
   default     = null
   type        = string

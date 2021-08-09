@@ -38,7 +38,6 @@ This modules creates:
 | subnet\_ids | List of subnet IDs for the ES domain to be created in | `list(string)` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
-| create\_new\_service\_role | Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked\_service\_role is required | `bool` | `"true"` | no |
 | domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes.<br>  Iops is only valid when volume type is io1 | `number` | `null` | no |
@@ -49,7 +48,6 @@ This modules creates:
 | instance\_count | Number of instances to launch in the ES domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
 | kms\_key\_id | The KMS key id to encrypt the Elasticsearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
-| linked\_service\_role | Name of the IAM linked service role that enables ES. This value must take the form of aws\_iam\_service\_linked\_role.<name> | `string` | `"aws_iam_service_linked_role.es"` | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |
 | snapshot\_start\_hour | Hour when an automated daily snapshot of the indices is taken | `number` | `0` | no |
