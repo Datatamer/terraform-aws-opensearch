@@ -38,17 +38,7 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
     enabled = var.node_to_node_encryption_enabled
   }
 
-
-  tags = var.additional_tags
-
-  depends_on = [
-    var.linked_service_role,
-  ]
-}
-
-resource "aws_iam_service_linked_role" "es" {
-  count            = var.create_new_service_role == true ? 1 : 0
-  aws_service_name = "es.amazonaws.com"
+  tags = var.tags
 }
 
 data "aws_caller_identity" "current" {}

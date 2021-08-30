@@ -1,5 +1,14 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v3.0.0 - August 9th 2021
+* Requires ES service role to be created as a prerequisite to using this module (see README)
+* Removes input variables `linked_service_role` and `create_new_service_role`
+* Example updated on how to create the ES service role
+
+## v2.1.0 - July 12nd 2021
+* Adds new variable `tags` to set tags for all resources
+* Deprecates `es_tags` in favor of `tags`
+
 ## v2.0.0 - October 13th 2020
 * New input variables for the main module:
     * `security_group_ids`

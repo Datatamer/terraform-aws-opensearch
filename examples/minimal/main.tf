@@ -1,10 +1,12 @@
 resource "aws_vpc" "es_vpc" {
   cidr_block = "1.2.3.0/24"
+  tags       = var.tags
 }
 
 resource "aws_subnet" "es_subnet" {
   vpc_id     = aws_vpc.es_vpc.id
   cidr_block = "1.2.3.0/24"
+  tags       = var.tags
 }
 
 module "sg-ports" {
@@ -23,14 +25,20 @@ module "aws-sg" {
   ]
   ingress_ports  = module.sg-ports.ingress_ports
   sg_name_prefix = var.name-prefix
+  tags           = var.tags
+}
+
+resource "aws_iam_service_linked_role" "es" {
+  count            = var.create_new_service_role == true ? 1 : 0
+  aws_service_name = "es.amazonaws.com"
 }
 
 module "tamr-es-cluster" {
-  source      = "../../"
-  vpc_id      = aws_vpc.es_vpc.id
-  domain_name = format("%s-elasticsearch", var.name-prefix)
-  subnet_ids  = [aws_subnet.es_subnet.id]
-  # Only needed once per account, so may need to set this to false
-  create_new_service_role = true
-  security_group_ids      = module.aws-sg.security_group_ids
+  depends_on         = [aws_iam_service_linked_role.es]
+  source             = "../../"
+  vpc_id             = aws_vpc.es_vpc.id
+  domain_name        = format("%s-elasticsearch", var.name-prefix)
+  subnet_ids         = [aws_subnet.es_subnet.id]
+  security_group_ids = module.aws-sg.security_group_ids
+  tags               = var.tags
 }

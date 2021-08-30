@@ -1,3 +1,7 @@
+locals {
+  effective_tags = length(var.tags) > 0 ? var.tags : var.es_tags
+}
+
 module "tamr-es-cluster" {
   source                          = "./modules/aws-es"
   domain_name                     = var.domain_name
@@ -11,9 +15,8 @@ module "tamr-es-cluster" {
   ebs_iops                        = var.ebs_iops
   ebs_volume_size                 = var.ebs_volume_size
   ebs_volume_type                 = var.ebs_volume_type
-  additional_tags                 = var.es_tags
+  tags                            = local.effective_tags
   aws_region                      = var.aws_region
-  create_new_service_role         = var.create_new_service_role
   kms_key_id                      = var.kms_key_id
   enforce_https                   = var.enforce_https
   tls_security_policy             = var.tls_security_policy

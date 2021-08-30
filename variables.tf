@@ -67,27 +67,21 @@ variable "ebs_volume_type" {
 }
 
 variable "es_tags" {
-  default     = {}
   type        = map(string)
-  description = "Additional tags to be attached to the ES domain"
+  description = "[DEPRECATED: Use `tags` instead] Additional tags to be attached to the ES domain and associated resources."
+  default     = {}
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources. Replaces `es_tags`."
+  default     = {}
 }
 
 variable "aws_region" {
   default     = "us-east-1"
   type        = string
   description = "AWS region to launch in"
-}
-
-variable "linked_service_role" {
-  type        = string
-  description = "Name of the IAM linked service role that enables ES. This value must take the form of aws_iam_service_linked_role.<name> and must be set if create_new_service_role is false"
-  default     = "aws_iam_service_linked_role.es"
-}
-
-variable "create_new_service_role" {
-  default     = true
-  type        = bool
-  description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
 }
 
 variable "vpc_id" {
