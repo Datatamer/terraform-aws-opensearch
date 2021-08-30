@@ -44,27 +44,34 @@ module "aws-sg" {
   sg_name_prefix = var.name-prefix
 }
 
+# module "tamr-es-cluster" {
+#   source      = "../../"
+#   vpc_id      = module.vpc.vpc_id
+#   domain_name = format("%s-elasticsearch", var.name-prefix)
+#   subnet_ids  = [module.vpc.private_subnets[0]]
+#   # Only needed once per account, so may need to set this to false
+#   create_new_service_role = false
+#   linked_service_role     = "data.aws_iam_role.es"
+#   security_group_ids      = module.aws-sg.security_group_ids
+#   aws_region              = data.aws_region.current.name
+#   instance_count          = 1
+#   ebs_volume_size         = 30
+# }
+
+resource "aws_iam_service_linked_role" "es" {
+  count            = var.create_new_service_role == true ? 1 : 0
+  aws_service_name = "es.amazonaws.com"
+}
+
 module "tamr-es-cluster" {
-  source      = "../../"
-  vpc_id      = module.vpc.vpc_id
-  domain_name = format("%s-elasticsearch", var.name-prefix)
-  subnet_ids  = [module.vpc.private_subnets[0]]
-  # Only needed once per account, so may need to set this to false
-  create_new_service_role = false
-  linked_service_role     = "data.aws_iam_role.es"
-  security_group_ids      = module.aws-sg.security_group_ids
+  depends_on         = [aws_iam_service_linked_role.es]
+  source             = "../../"
+  vpc_id             = module.vpc.vpc_id
+  domain_name        = format("%s-elasticsearch", var.name-prefix)
+  subnet_ids         = [module.vpc.private_subnets[0]]
+  security_group_ids = module.aws-sg.security_group_ids
   aws_region              = data.aws_region.current.name
   instance_count          = 1
   ebs_volume_size         = 30
-}
-
-## If you don't have this ES Role created yet in your AWS Account, this data source will raise an error.
-## To fix the error:
-## - comment this data source,
-## - in the module tamr-es-cluster:
-##     - remove the argument linked_service_role,
-##     - update the argument create_new_service_role = true
-#####
-data "aws_iam_role" "es" {
-  name = "AWSServiceRoleForAmazonElasticsearchService"
+  tags               = var.tags
 }
