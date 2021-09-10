@@ -63,7 +63,7 @@ func TestMinimalElasticSearch(t *testing.T) {
 					TerraformDir: tempTestFolder,
 					Vars:         testCase.vars,
 					EnvVars: map[string]string{
-						"AWS_DEFAULT_REGION": awsRegion,
+						"AWS_REGION": awsRegion,
 					},
 				})
 
