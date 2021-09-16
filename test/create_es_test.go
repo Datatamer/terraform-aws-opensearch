@@ -11,43 +11,25 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestMinimalElasticSearch(t *testing.T) {
-	// This creates this function with the possibility of being run in parallel with other functions
-	// that start with this same t.Parallel() call.
-	t.Parallel()
-
-	// For convenience - uncomment these as well as the "os" import
-	// when doing local testing if you need to skip any sections.
-	//
-	// A common usage for this would be skipping teardown first (keeping infrastructure)
-	// and then in your next run skip the setup* and create* steps. This way you can keep testing
-	// your Go test against your infrastructure quicker. Be mindful of random-ids, as they would be updated
-	// on each run, which would make some assertions fail.
-
-	// os.Setenv("SKIP_", "true")
-	// os.Setenv("TERRATEST_REGION", "us-east-1")
-
-	// os.Setenv("SKIP_setup_options", "true")
-	// os.Setenv("SKIP_create_cluster", "true")
-	// os.Setenv("SKIP_validate", "true")
-
-	// os.Setenv("SKIP_teardown", "true")
-
-	// list of different buckets that will be created to be tested
-	var testCases = []ElasticSearchModuleTestCase{
+func initTestCases() []ElasticSearchModuleTestCase {
+	return []ElasticSearchModuleTestCase{
 		{
 			testName:         "Test1",
 			expectApplyError: false,
 			vars: map[string]interface{}{
-				"name-prefix":             strings.ToLower(random.UniqueId()),
+				"name-prefix":             "",
 				"tags":                    make(map[string]string),
 				"create_new_service_role": false,
 			},
 		},
 	}
+}
 
-	// Getting a random region between the US ones
-	awsRegion := aws.GetRandomRegion(t, []string{"us-east-1", "us-east-2", "us-west-1", "us-west-2"}, nil)
+func TestMinimalElasticSearch(t *testing.T) {
+	// os.Setenv("TERRATEST_REGION", "us-east-1")
+
+	// list of different buckets that will be created to be tested
+	testCases := initTestCases()
 
 	for _, testCase := range testCases {
 		testCase := testCase
@@ -58,7 +40,22 @@ func TestMinimalElasticSearch(t *testing.T) {
 			// this creates a tempTestFolder for each testCase
 			tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "..", "test_examples/minimal")
 
+			// this stage will generate a random `awsRegion` and a `uniqueId` to be used in tests.
+			test_structure.RunTestStage(t, "pick_new_randoms", func() {
+				usRegions := []string{"us-east-1", "us-east-2", "us-west-1", "us-west-2"}
+				// This function will first check for the Env Var TERRATEST_REGION and return its value if != ""
+				awsRegion := aws.GetRandomStableRegion(t, usRegions, nil)
+
+				test_structure.SaveString(t, tempTestFolder, "region", awsRegion)
+				test_structure.SaveString(t, tempTestFolder, "unique_id", strings.ToLower(random.UniqueId()))
+			})
+
 			test_structure.RunTestStage(t, "setup_options", func() {
+				awsRegion := test_structure.LoadString(t, tempTestFolder, "region")
+				uniqueID := test_structure.LoadString(t, tempTestFolder, "unique_id")
+
+				testCase.vars["name-prefix"] = uniqueID
+
 				terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 					TerraformDir: tempTestFolder,
 					Vars:         testCase.vars,
