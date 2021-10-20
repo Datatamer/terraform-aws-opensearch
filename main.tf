@@ -3,6 +3,8 @@ locals {
 }
 
 module "tamr-es-cluster" {
+  count                           = var.instance_count > 0 ? 1 : 0
+
   source                          = "./modules/aws-es"
   domain_name                     = var.domain_name
   es_version                      = var.es_version

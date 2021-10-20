@@ -1,10 +1,10 @@
 output "tamr_es_domain_id" {
-  value       = module.tamr-es-cluster.tamr_es_domain_id
+  value       = var.instance_count > 0 ? module.tamr-es-cluster[0].tamr_es_domain_id : null
   description = "ID of the ES domain created"
 }
 
 output "tamr_es_domain_endpoint" {
-  value       = module.tamr-es-cluster.tamr_es_domain_endpoint
+  value       = var.instance_count > 0 ? module.tamr-es-cluster[0].tamr_es_domain_endpoint : null
   description = "Endpoint of ES domain created"
 }
 
