@@ -13,6 +13,7 @@ type ElasticSearchModuleTestCase struct {
 	expectApplyError bool
 }
 
+// validateModuleOutputs validates the output from the module that was created by using assert.NotNil function.
 func validateModuleOutputs(t *testing.T, terraformOptions *terraform.Options) {
 
 	es_id := terraform.Output(t, terraformOptions, "tamr_es_domain_id")

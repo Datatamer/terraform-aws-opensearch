@@ -15,3 +15,15 @@ variable "create_new_service_role" {
   type        = bool
   description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
 }
+
+variable "vpc_cidr" {
+  type = string
+}
+
+variable "subnet_cidr" {
+  type = string
+}
+
+variable "ingress_cidr_blocks" {
+  type = list(string)
+}

@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -20,6 +21,9 @@ func initTestCases() []ElasticSearchModuleTestCase {
 				"name-prefix":             "",
 				"tags":                    make(map[string]string),
 				"create_new_service_role": false,
+				"vpc_cidr":                "172.19.0.0/18",
+				"subnet_cidr":             "172.19.0.0/24",
+				"ingress_cidr_blocks":     []string{"0.0.0.0/0"},
 			},
 		},
 	}
@@ -47,7 +51,9 @@ func TestMinimalElasticSearch(t *testing.T) {
 				awsRegion := aws.GetRandomStableRegion(t, usRegions, nil)
 
 				test_structure.SaveString(t, tempTestFolder, "region", awsRegion)
-				test_structure.SaveString(t, tempTestFolder, "unique_id", strings.ToLower(random.UniqueId()))
+				test_structure.SaveString(t, tempTestFolder, "unique_id", fmt.Sprintf("%s%s", "a", strings.ToLower(random.UniqueId())))
+				// domain_name (must start with a lowercase alphabet and be at least 3 and no more than 28 characters long.
+				// hence the 'a' in the string
 			})
 
 			test_structure.RunTestStage(t, "setup_options", func() {
