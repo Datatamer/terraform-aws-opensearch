@@ -118,3 +118,30 @@ variable "arn_partition" {
   EOF
   default     = "aws"
 }
+
+variable "log_publishing_options" {
+  type = list(object({
+    log_group_arn = string
+    log_type = string
+  }))
+  description = "Set of objects containing values for publishing logs to cloudwatch"
+  default = []
+  # default = [
+  #   {
+  #     "log_group_arn" = "<group1>"
+  #     "log_type" = "AUDIT_LOGS"
+  #   },
+  #   {
+  #     "log_group_arn" = "<group2>"
+  #     "log_type" = "SEARCH_SLOW_LOGS"
+  #   },
+  #   {
+  #     "log_group_arn" = "<group3>"
+  #     "log_type" = "ES_APPLICATION_LOGS"
+  #   },
+  #   {
+  #     "log_group_arn" = "<group4>"
+  #     "log_type" = "INDEX_SLOW_LOGS"
+  #   }
+  # ]
+}
