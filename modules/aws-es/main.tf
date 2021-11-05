@@ -38,6 +38,15 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
     enabled = var.node_to_node_encryption_enabled
   }
 
+  dynamic "log_publishing_options" {
+    for_each = var.log_publishing_options
+    content {
+      cloudwatch_log_group_arn = log_publishing_options.value["log_group_arn"]
+      enabled = true
+      log_type = log_publishing_options.value["log_type"]
+    }
+  }
+
   tags = var.tags
 }
 

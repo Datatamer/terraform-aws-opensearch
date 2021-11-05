@@ -40,6 +40,8 @@ module "tamr-es-cluster" {
   aws_region         = data.aws_region.current.name
   security_group_ids = module.aws-sg.security_group_ids
   tags               = var.tags
+  log_retention_in_days  = var.log_retention_in_days
+  log_types = var.log_types
 }
 
 data "aws_region" "current" {}
