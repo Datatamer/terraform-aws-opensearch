@@ -4,7 +4,7 @@ resource "aws_cloudwatch_log_group" "es-logs" {
   name_prefix = format("%s-%s", var.domain_name, each.value)
 
   retention_in_days = var.log_retention_in_days
-  tags = var.tags
+  tags              = var.tags
 }
 
 data "aws_iam_policy_document" "es-tamr-log-publishing-policy" {
@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "es-tamr-log-publishing-policy" {
       "logs:PutLogEventsBatch",
     ]
 
-    resources = [ for i in aws_cloudwatch_log_group.es-logs : "${i.arn}:*" ]
+    resources = [for i in aws_cloudwatch_log_group.es-logs : "${i.arn}:*"]
 
     principals {
       identifiers = ["es.amazonaws.com"]
@@ -25,12 +25,12 @@ data "aws_iam_policy_document" "es-tamr-log-publishing-policy" {
 }
 
 resource "aws_cloudwatch_log_resource_policy" "es-tamr-log-publishing-policy" {
-  count = length(var.log_types) > 0 ? 1 : 0
+  count           = length(var.log_types) > 0 ? 1 : 0
   policy_document = data.aws_iam_policy_document.es-tamr-log-publishing-policy.json
   policy_name     = "es-tamr-log-publishing-policy-${random_string.suffix.id}"
 }
 
 resource "random_string" "suffix" {
-  length           = 4
-  special          = false
+  length  = 4
+  special = false
 }

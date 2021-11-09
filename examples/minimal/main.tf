@@ -34,13 +34,13 @@ resource "aws_iam_service_linked_role" "es" {
 }
 
 module "tamr-es-cluster" {
-  depends_on         = [aws_iam_service_linked_role.es]
-  source             = "../../"
-  vpc_id             = aws_vpc.es_vpc.id
-  domain_name        = format("%s-elasticsearch", var.name-prefix)
-  subnet_ids         = [aws_subnet.es_subnet.id]
-  security_group_ids = module.aws-sg.security_group_ids
-  tags               = var.tags
-  log_retention_in_days  = var.log_retention_in_days
-  log_types = var.log_types
+  depends_on            = [aws_iam_service_linked_role.es]
+  source                = "../../"
+  vpc_id                = aws_vpc.es_vpc.id
+  domain_name           = format("%s-elasticsearch", var.name-prefix)
+  subnet_ids            = [aws_subnet.es_subnet.id]
+  security_group_ids    = module.aws-sg.security_group_ids
+  tags                  = var.tags
+  log_retention_in_days = var.log_retention_in_days
+  log_types             = var.log_types
 }

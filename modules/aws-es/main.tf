@@ -42,8 +42,8 @@ resource "aws_elasticsearch_domain" "tamr-es-cluster" {
     for_each = var.log_publishing_options
     content {
       cloudwatch_log_group_arn = log_publishing_options.value["log_group_arn"]
-      enabled = true
-      log_type = log_publishing_options.value["log_type"]
+      enabled                  = true
+      log_type                 = log_publishing_options.value["log_type"]
     }
   }
 

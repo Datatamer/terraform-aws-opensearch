@@ -122,8 +122,8 @@ variable "arn_partition" {
 variable "log_publishing_options" {
   type = list(object({
     log_group_arn = string
-    log_type = string
+    log_type      = string
   }))
   description = "Set of objects containing values for publishing logs to cloudwatch"
-  default = []
+  default     = []
 }
