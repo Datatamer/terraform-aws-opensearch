@@ -32,8 +32,8 @@ module "tamr-es-cluster" {
 module "tamr-es-coudwatch-log-groups" {
   source = "./modules/cloudwatch-logs"
 
-  domain_name = var.domain_name
-  tags = local.effective_tags
-  log_types = var.log_types
+  domain_name           = var.domain_name
+  tags                  = local.effective_tags
+  log_types             = var.log_types
   log_retention_in_days = var.log_retention_in_days
 }
