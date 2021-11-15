@@ -1,6 +1,6 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
-## v3.1.0 - August 9th 2021
+## v3.1.0 - November 15th 2021
 * Adds variables `logs_retention_in_days` and `log_types` that enables the publishing of ElasticSearch Logs into CloudWatch
 
 ## v3.0.0 - August 9th 2021
