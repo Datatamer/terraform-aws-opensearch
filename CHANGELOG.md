@@ -1,5 +1,8 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v3.1.0 - November 15th 2021
+* Adds variables `logs_retention_in_days` and `log_types` that enables the publishing of ElasticSearch Logs into CloudWatch
+
 ## v3.0.0 - August 9th 2021
 * Requires ES service role to be created as a prerequisite to using this module (see README)
 * Removes input variables `linked_service_role` and `create_new_service_role`

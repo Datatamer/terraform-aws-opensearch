@@ -118,3 +118,12 @@ variable "arn_partition" {
   EOF
   default     = "aws"
 }
+
+variable "log_publishing_options" {
+  type = list(object({
+    log_group_arn = string
+    log_type      = string
+  }))
+  description = "Set of objects containing values for publishing logs to cloudwatch"
+  default     = []
+}

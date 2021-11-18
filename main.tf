@@ -22,4 +22,18 @@ module "tamr-es-cluster" {
   tls_security_policy             = var.tls_security_policy
   node_to_node_encryption_enabled = var.node_to_node_encryption_enabled
   arn_partition                   = var.arn_partition
+  log_publishing_options          = module.tamr-es-coudwatch-log-groups.log_publishing_options
+
+  depends_on = [
+    module.tamr-es-coudwatch-log-groups
+  ]
+}
+
+module "tamr-es-coudwatch-log-groups" {
+  source = "./modules/cloudwatch-logs"
+
+  domain_name           = var.domain_name
+  tags                  = local.effective_tags
+  log_types             = var.log_types
+  log_retention_in_days = var.log_retention_in_days
 }
