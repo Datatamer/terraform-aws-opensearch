@@ -1,3 +1,4 @@
+#tfsec:ignore:aws-elastic-search-enable-domain-logging tfsec:ignore:aws-elastic-search-enable-logging
 resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   domain_name           = var.domain_name
   elasticsearch_version = var.es_version

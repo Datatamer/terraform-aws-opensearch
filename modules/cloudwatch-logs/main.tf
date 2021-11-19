@@ -1,3 +1,4 @@
+#tfsec:ignore:aws-cloudwatch-log-group-customer-key
 resource "aws_cloudwatch_log_group" "es-logs" {
   for_each = toset(var.log_types)
 
