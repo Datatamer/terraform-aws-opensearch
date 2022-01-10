@@ -1,3 +1,6 @@
 output "log_publishing_options" {
-  value = [for key, log_group in aws_cloudwatch_log_group.es-logs : { "log_group_arn" = log_group.arn, "log_type" = key }]
+  value = (var.log_group_name == "" ? [] : 
+            [for type in var.log_types : { "log_group_arn" = one(data.aws_cloudwatch_log_group.es-logs[*].arn),
+                                           "log_type" = type }]
+  )
 }

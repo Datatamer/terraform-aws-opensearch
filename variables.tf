@@ -178,12 +178,8 @@ variable "log_types" {
   default     = ["ES_APPLICATION_LOGS", "SEARCH_SLOW_LOGS", "INDEX_SLOW_LOGS"]
 }
 
-variable "log_retention_in_days" {
-  type        = number
-  description = <<EOF
-  Specifies the number of days you want to retain log events.
-  Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653, and 0.
-  If you select 0, the events in the log group are always retained and never expire.
-  EOF
-  default     = 0
+variable "log_group_name" {
+  type        = string
+  description = "The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to"
+  default     = ""
 }

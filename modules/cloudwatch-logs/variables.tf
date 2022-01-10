@@ -25,3 +25,9 @@ variable "log_retention_in_days" {
   EOF
   default     = 0
 }
+
+variable "log_group_name" {
+  type        = string
+  description = "The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to"
+  default     = ""
+}
