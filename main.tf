@@ -35,5 +35,5 @@ module "tamr-es-coudwatch-log-groups" {
   domain_name    = var.domain_name
   tags           = local.effective_tags
   log_types      = var.log_types
-  log_group_name = "" // var.log_group_name
+  log_group_name = var.log_group_name
 }
