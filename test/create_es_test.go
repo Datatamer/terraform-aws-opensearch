@@ -20,7 +20,7 @@ func initTestCases() []ElasticSearchModuleTestCase {
 			vars: map[string]interface{}{
 				"name-prefix":             "",
 				"tags":                    make(map[string]string),
-				"create_new_service_role": true,
+				"create_new_service_role": false,
 				"vpc_cidr":                "172.19.0.0/18",
 				"subnet_cidr":             "172.19.0.0/24",
 				"ingress_cidr_blocks":     []string{"0.0.0.0/0"},
