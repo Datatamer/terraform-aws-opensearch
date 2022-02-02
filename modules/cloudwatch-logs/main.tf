@@ -12,9 +12,9 @@ data "aws_iam_policy_document" "es-tamr-log-publishing-policy" {
       "logs:PutLogEventsBatch",
     ]
 
-    resources = (one(data.aws_cloudwatch_log_group.es-logs[*].arn) == null ? 
-                [] :
-                [one(data.aws_cloudwatch_log_group.es-logs[*].arn)])
+    resources = (one(data.aws_cloudwatch_log_group.es-logs[*].arn) == null ?
+      [] :
+    [one(data.aws_cloudwatch_log_group.es-logs[*].arn)])
 
     principals {
       identifiers = ["es.amazonaws.com"]
