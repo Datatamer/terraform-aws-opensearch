@@ -1,14 +1,21 @@
-variable "domain_name" {
-  default     = "tamr-es-cluster"
-  type        = string
-  description = "The name to give to the ES domain"
+variable "name-prefix" {
+  description = "A string to prepend to names of resources created by this example"
 }
-
 variable "tags" {
   type        = map(string)
-  description = "A map of tags to add to CloudWatch resources."
-  default     = {}
+  description = "A map of tags to add to all resources created by this example."
+  default = {
+    Author      = "Tamr"
+    Environment = "Example"
+  }
 }
+
+variable "create_new_service_role" {
+  default     = false
+  type        = bool
+  description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
+}
+
 
 variable "log_types" {
   type        = list(string)
@@ -24,10 +31,4 @@ variable "log_retention_in_days" {
   If you select 0, the events in the log group are always retained and never expire.
   EOF
   default     = 0
-}
-
-variable "log_group_name" {
-  type        = string
-  description = "The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to"
-  default     = ""
 }
