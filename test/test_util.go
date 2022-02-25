@@ -9,6 +9,7 @@ import (
 
 type ElasticSearchModuleTestCase struct {
 	testName         string
+	testDir          string
 	vars             map[string]interface{}
 	expectApplyError bool
 }

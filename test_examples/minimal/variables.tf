@@ -27,9 +27,3 @@ variable "subnet_cidr" {
 variable "ingress_cidr_blocks" {
   type = list(string)
 }
-
-variable "log_types" {
-  type        = list(string)
-  description = "A list of log types that will be published to CloudWatch. Valid values are SEARCH_SLOW_LOGS, INDEX_SLOW_LOGS, ES_APPLICATION_LOGS and AUDIT_LOGS."
-  default     = ["ES_APPLICATION_LOGS", "SEARCH_SLOW_LOGS", "INDEX_SLOW_LOGS"]
-}

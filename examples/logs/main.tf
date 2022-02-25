@@ -1,11 +1,11 @@
 resource "aws_vpc" "es_vpc" {
-  cidr_block = "1.2.3.0/24"
+  cidr_block = var.vpc_cidr
   tags       = var.tags
 }
 
 resource "aws_subnet" "es_subnet" {
   vpc_id     = aws_vpc.es_vpc.id
-  cidr_block = "1.2.3.0/24"
+  cidr_block = var.subnet_cidr
   tags       = var.tags
 }
 
@@ -14,12 +14,11 @@ module "sg-ports" {
   source = "../../modules/es-ports"
 }
 
+
 module "aws-sg" {
-  source = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
-  vpc_id = aws_vpc.es_vpc.id
-  ingress_cidr_blocks = [
-    "1.2.3.0/24"
-  ]
+  source              = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
+  vpc_id              = aws_vpc.es_vpc.id
+  ingress_cidr_blocks = var.ingress_cidr_blocks
   egress_cidr_blocks = [
     "0.0.0.0/0"
   ]

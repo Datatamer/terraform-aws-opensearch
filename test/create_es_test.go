@@ -15,8 +15,9 @@ import (
 func initTestCases() []ElasticSearchModuleTestCase {
 	return []ElasticSearchModuleTestCase{
 		{
-			testName:         "Test1",
+			testName:         "Minimal",
 			expectApplyError: false,
+			testDir:          "test_examples/minimal",
 			vars: map[string]interface{}{
 				"name-prefix":             "",
 				"tags":                    make(map[string]string),
@@ -42,7 +43,7 @@ func TestMinimalElasticSearch(t *testing.T) {
 			t.Parallel()
 
 			// this creates a tempTestFolder for each testCase
-			tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "..", "test_examples/minimal")
+			tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "..", testCase.testDir)
 
 			// this stage will generate a random `awsRegion` and a `uniqueId` to be used in tests.
 			test_structure.RunTestStage(t, "pick_new_randoms", func() {
