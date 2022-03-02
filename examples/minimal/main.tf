@@ -32,8 +32,8 @@ resource "aws_iam_service_linked_role" "es" {
 }
 
 module "tamr-es-cluster" {
-  source             = "../../"
-  depends_on         = [aws_iam_service_linked_role.es]
+  source     = "../../"
+  depends_on = [aws_iam_service_linked_role.es]
 
   vpc_id             = aws_vpc.es_vpc.id
   domain_name        = format("%s-elasticsearch", var.name-prefix)

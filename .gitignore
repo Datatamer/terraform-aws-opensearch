@@ -34,7 +34,7 @@ terratest.tf.json
 
 # Intellij
 .idea/
-*.iml
+**/*.iml
 
 # Ignore makefile
 ops-makefile
