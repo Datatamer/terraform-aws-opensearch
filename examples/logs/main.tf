@@ -14,6 +14,7 @@ module "sg-ports" {
   source = "../../modules/es-ports"
 }
 
+
 module "aws-sg" {
   source              = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
   vpc_id              = aws_vpc.es_vpc.id
@@ -32,14 +33,21 @@ resource "aws_iam_service_linked_role" "es" {
 }
 
 module "tamr-es-cluster" {
-  source     = "../../"
-  depends_on = [aws_iam_service_linked_role.es]
-
+  depends_on         = [aws_iam_service_linked_role.es]
+  source             = "../../"
   vpc_id             = aws_vpc.es_vpc.id
   domain_name        = format("%s-elasticsearch", var.name-prefix)
   subnet_ids         = [aws_subnet.es_subnet.id]
   security_group_ids = module.aws-sg.security_group_ids
+  log_types          = var.log_types
+  log_group_name     = aws_cloudwatch_log_group.es-logs.name
   tags               = var.tags
 }
 
-data "aws_region" "current" {}
+#tfsec:ignore:aws-cloudwatch-log-group-customer-key
+resource "aws_cloudwatch_log_group" "es-logs" {
+  name_prefix = format("%s-%s", var.name-prefix, "example-logs")
+
+  retention_in_days = var.log_retention_in_days
+  tags              = var.tags
+}
