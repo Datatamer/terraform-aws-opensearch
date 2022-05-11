@@ -1,5 +1,7 @@
 # Tamr Terraform AWS Elasticsearch Repo
 
+## v4.0.0 - November 15th 2021
+* Replaces`logs_retention_in_days` for `log_group_name` variable.
 ## v3.1.0 - November 15th 2021
 * Adds variables `logs_retention_in_days` and `log_types` that enables the publishing of ElasticSearch Logs into CloudWatch
 
