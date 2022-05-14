@@ -32,3 +32,15 @@ variable "log_retention_in_days" {
   EOF
   default     = 0
 }
+
+variable "vpc_cidr" {
+  type = string
+}
+
+variable "subnet_cidr" {
+  type = string
+}
+
+variable "ingress_cidr_blocks" {
+  type = list(string)
+}
