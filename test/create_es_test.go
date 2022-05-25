@@ -104,8 +104,14 @@ func TestMinimalElasticSearch(t *testing.T) {
 			})
 
 			defer test_structure.RunTestStage(t, "teardown", func() {
-				teraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
-				terraform.Destroy(t, teraformOptions)
+				terraformOptions := test_structure.LoadTerraformOptions(t, tempTestFolder)
+				terraformOptions.MaxRetries = 5
+
+				_, err := terraform.DestroyE(t, terraformOptions)
+				if err != nil {
+					// If there is an error on destroy, it will be logged.
+					logger.Log(t, err)
+				}
 			})
 
 			test_structure.RunTestStage(t, "validate", func() {
