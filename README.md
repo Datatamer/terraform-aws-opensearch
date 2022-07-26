@@ -1,25 +1,27 @@
 # Tamr AWS Elasticsearch Terraform Module
-This terraform module creates an Elasticsearch (ES) domain on AWS.
+This terraform module creates an OpenSearch domain on AWS.
 
 **Prerequisite**
 
-This module requires an [IAM service linked role](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/slr-es.html) for ES on the AWS account.
+This module requires an [IAM service linked role](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/slr.html) for OpenSearch on the AWS account.
 
-To create an ES service role in terraform:
+To create an OpenSearch service role in terraform:
 ```
-resource "aws_iam_service_linked_role" "es-service-role" {
-  aws_service_name = "es.amazonaws.com"
+resource "aws_iam_service_linked_role" "opensearch-service-role" {
+  aws_service_name = "opensearchservice.amazonaws.com"
 }
 ```
 
+OpenSearch Service automatically creates a new OpenSearch service-linked role the first time you create an OpenSearch domain if you have permissions for the iam:CreateServiceLinkedRole action and the legacy Elasticsearch role doesn't exist in your account.
+
 There can be only one service linked role for per AWS account.
 
-You may run into an error like this when trying to remove the ES service linked role if there is still an Elasticsearch domain in the account:
+You may run into an error like this when trying to remove the ES service linked role if there is still an OpenSearch domain in the account:
 ```
 Error: Error waiting for role (arn:aws:iam::000000000000:role/aws-service-role/es.amazonaws.com/AWSServiceRoleForAmazonElasticsearchService) to be deleted: unexpected state 'FAILED', wanted target 'SUCCEEDED'.
 ```
 
-You will need to ensure all the domains are completely removed before attempting to remove the ES linked service role. If it appears like all the domains have already been removed, you can try again.
+You will need to ensure all the domains are completely removed before attempting to remove the service linked service role. If it appears like all the domains have already been removed, you can try again.
 
 # Examples
 ## Minimal
@@ -28,7 +30,7 @@ Smallest complete fully working example. This example might require extra resour
 
 # Resources Created
 This module creates:
-* a new Elasticsearch domain in AWS
+* a new OpenSearch domain in AWS
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -93,7 +95,7 @@ This repo is based on:
 
 # Development
 ## Generating Docs
-Run `make gen` to generate the section of docs around terraform inputs, outputs and requirements.
+Run `make terraform/docs` to generate the section of docs around terraform inputs, outputs and requirements.
 
 ## Checkstyles
 Run `make lint`, this will run terraform fmt, in addition to a few other checks to detect whitespace issues.

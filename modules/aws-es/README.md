@@ -1,5 +1,5 @@
 # AWS ES Module
-This is a terraform module for a new ES domain on AWS.
+This is a terraform module for a new OpenSearch domain on AWS.
 This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
