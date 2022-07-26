@@ -24,7 +24,7 @@ You will need to ensure all the domains are completely removed before attempting
 # Examples
 ## Minimal
 Smallest complete fully working example. This example might require extra resources to run the example.
-- [Minimal](https://github.com/Datatamer/terraform-aws-es/tree/master/examples/minimal)
+- [Minimal](https://github.com/Datatamer/terraform-aws-opensearch/tree/master/examples/minimal)
 
 # Resources Created
 This module creates:

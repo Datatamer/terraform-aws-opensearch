@@ -6,7 +6,7 @@ This module returns a list of ports used by the Elasticsearch Service on AWS.
 Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
 ```
 module "tamr-es-cluster" {
-  source = "git::https://github.com/Datatamer/terraform-aws-es//modules/es-ports?ref=2.0.0"
+  source = "git::https://github.com/Datatamer/terraform-aws-opensearch//modules/es-ports?ref=3.0.0"
 }
 ```
 

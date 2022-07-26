@@ -10,7 +10,7 @@ resource "aws_subnet" "es_subnet" {
 }
 
 module "sg-ports" {
-  #source = "git::https://github.com/Datatamer/terraform-aws-es.git//modules/es-ports?ref=2.0.0"
+  #source = "git::https://github.com/Datatamer/terraform-aws-opensearch.git//modules/es-ports?ref=3.0.0"
   source = "../../modules/es-ports"
 }
 
