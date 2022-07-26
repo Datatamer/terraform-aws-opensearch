@@ -48,11 +48,11 @@ No provider.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| subnet\_ids | List of subnet IDs for the ES domain to be created in | `list(string)` | n/a | yes |
+| subnet\_ids | List of subnet IDs for the OpenSearch domain to be created in | `list(string)` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
-| domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |
+| domain\_name | The name to give to the OpenSearch domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes.<br>  Iops is only valid when volume type is io1 | `number` | `null` | no |
 | ebs\_volume\_size | The size of EBS volumes attached to data nodes (in GB) | `number` | `100` | no |
@@ -60,18 +60,18 @@ No provider.
 | enable\_http | If set to true, enables SSH | `bool` | `true` | no |
 | enable\_https | If set to true, enables SSH | `bool` | `true` | no |
 | enforce\_https | Whether or not to require HTTPS on the domain endpoint | `bool` | `true` | no |
-| es\_tags | [DEPRECATED: Use `tags` instead] Additional tags to be attached to the ES domain and associated resources. | `map(string)` | `{}` | no |
-| es\_version | Version of ES to deploy | `string` | `"6.8"` | no |
+| es\_tags | [DEPRECATED: Use `tags` instead] Additional tags to be attached to the OpenSearch domain and associated resources. | `map(string)` | `{}` | no |
+| es\_version | Version of OpenSearch to deploy | `string` | `"6.8"` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
-| instance\_count | Number of instances to launch in the ES domain | `number` | `2` | no |
+| instance\_count | Number of instances to launch in the OpenSearch domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
 | kms\_key\_id | The KMS key id to encrypt the Elasticsearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
 | log\_group\_name | The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to | `string` | `""` | no |
 | log\_types | A list of log types that will be published to CloudWatch. Valid values are SEARCH\_SLOW\_LOGS, INDEX\_SLOW\_LOGS, ES\_APPLICATION\_LOGS and AUDIT\_LOGS. | `list(string)` | <pre>[<br>  "ES_APPLICATION_LOGS",<br>  "SEARCH_SLOW_LOGS",<br>  "INDEX_SLOW_LOGS"<br>]</pre> | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | revoke\_rules\_on\_delete | Whether to revoke rules from the SG upon deletion | `bool` | `true` | no |
-| security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |
+| security\_group\_ids | List of security group IDs to be applied to the OpenSearch domain | `list(string)` | `[]` | no |
 | sg\_name | Security Group to create | `string` | `"es-security-group"` | no |
 | sg\_tags | Additional tags to be attached to the security group | `map(string)` | `{}` | no |
 | snapshot\_start\_hour | Hour when an automated daily snapshot of the indices is taken | `number` | `0` | no |

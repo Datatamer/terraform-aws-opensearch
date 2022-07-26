@@ -14,7 +14,7 @@ variable "tags" {
 variable "create_new_service_role" {
   default     = false
   type        = bool
-  description = "Whether to create a new IAM service linked role for ES. This only needs to happen once per account. If false, linked_service_role is required"
+  description = "Whether to create a new IAM service linked role for OpenSearch. This only needs to happen once per account. If false, linked_service_role is required"
 }
 
 variable "vpc_cidr" {

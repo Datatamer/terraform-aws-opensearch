@@ -27,7 +27,7 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | additional\_ports | Additional ports to add to the output of this module | `list(number)` | `[]` | no |
-| ports | Ports used by the Elasticsearch | `list(number)` | <pre>[<br>  80,<br>  443<br>]</pre> | no |
+| ports | Ports used by the OpenSearch | `list(number)` | <pre>[<br>  80,<br>  443<br>]</pre> | no |
 
 ## Outputs
 

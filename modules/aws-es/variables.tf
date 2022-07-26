@@ -1,19 +1,19 @@
 variable "domain_name" {
   default     = "tamr-es-cluster"
   type        = string
-  description = "The name to give to the ES domain"
+  description = "The name to give to the OpenSearch domain"
 }
 
 variable "es_version" {
   default     = "6.8"
   type        = string
-  description = "Version of ES to deploy"
+  description = "Version of OpenSearch to deploy"
 }
 
 variable "instance_count" {
   default     = 2
   type        = number
-  description = "Number of instances to launch in the ES domain"
+  description = "Number of instances to launch in the OpenSearch domain"
 }
 
 variable "instance_type" {
@@ -24,7 +24,7 @@ variable "instance_type" {
 
 variable "subnet_ids" {
   type        = list(string)
-  description = "List of subnet IDs for the ES domain to be created in"
+  description = "List of subnet IDs for the OpenSearch domain to be created in"
 }
 
 variable "security_group_ids" {
