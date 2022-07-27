@@ -1,4 +1,4 @@
-# Tamr AWS Elasticsearch Terraform Module
+# Tamr AWS OpenSearch Terraform Module
 This terraform module creates an OpenSearch domain on AWS.
 
 **Prerequisite**
@@ -16,7 +16,7 @@ OpenSearch Service automatically creates a new OpenSearch service-linked role th
 
 There can be only one service linked role for per AWS account.
 
-You may run into an error like this when trying to remove the ES service linked role if there is still an OpenSearch domain in the account:
+You may run into an error like this when trying to remove the service linked role if there is still an OpenSearch domain in the account:
 ```
 Error: Error waiting for role (arn:aws:iam::000000000000:role/aws-service-role/es.amazonaws.com/AWSServiceRoleForAmazonElasticsearchService) to be deleted: unexpected state 'FAILED', wanted target 'SUCCEEDED'.
 ```
@@ -66,8 +66,8 @@ No provider.
 | ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
 | instance\_count | Number of instances to launch in the OpenSearch domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
-| kms\_key\_id | The KMS key id to encrypt the Elasticsearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
-| log\_group\_name | The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to | `string` | `""` | no |
+| kms\_key\_id | The KMS key id to encrypt the OpenSearch domain with.<br>  If not specified then it defaults to using the aws/OpenSearch service KMS key | `string` | `null` | no |
+| log\_group\_name | The name of an existent CloudWatch Log Group that OpenSearch will publish logs to | `string` | `""` | no |
 | log\_types | A list of log types that will be published to CloudWatch. Valid values are SEARCH\_SLOW\_LOGS, INDEX\_SLOW\_LOGS, ES\_APPLICATION\_LOGS and AUDIT\_LOGS. | `list(string)` | <pre>[<br>  "ES_APPLICATION_LOGS",<br>  "SEARCH_SLOW_LOGS",<br>  "INDEX_SLOW_LOGS"<br>]</pre> | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | revoke\_rules\_on\_delete | Whether to revoke rules from the SG upon deletion | `bool` | `true` | no |

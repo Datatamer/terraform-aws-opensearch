@@ -1,4 +1,4 @@
-# Tamr AWS ES Ports Module
+# Tamr AWS OpenSearch Ports Module
 This module returns a list of ports used by the OpenSearch Service on AWS.
 
 # Examples
