@@ -63,7 +63,7 @@ No provider.
 | es\_tags | [DEPRECATED: Use `tags` instead] Additional tags to be attached to the OpenSearch domain and associated resources. | `map(string)` | `{}` | no |
 | es\_version | Version of OpenSearch to deploy | `string` | `"6.8"` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
-| ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
+| ingress\_security\_groups | Existing security groups to attach to new security groups for ingress | `list(string)` | `[]` | no |
 | instance\_count | Number of instances to launch in the OpenSearch domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
 | kms\_key\_id | The KMS key id to encrypt the OpenSearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |

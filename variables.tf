@@ -121,7 +121,7 @@ variable "ingress_cidr_blocks" {
 
 variable "ingress_security_groups" {
   type        = list(string)
-  description = "Existing security groups to attch to new security groups for ingress"
+  description = "Existing security groups to attach to new security groups for ingress"
   default     = []
 }
 
