@@ -47,7 +47,7 @@ This modules creates:
 | es\_version | Version of OpenSearch to deploy | `string` | `"6.8"` | no |
 | instance\_count | Number of instances to launch in the OpenSearch domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
-| kms\_key\_id | The KMS key id to encrypt the OpenSearch domain with.<br>  If not specified then it defaults to using the aws/OpenSearch service KMS key | `string` | `null` | no |
+| kms\_key\_id | The KMS key id to encrypt the OpenSearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
 | log\_publishing\_options | Set of objects containing values for publishing logs to cloudwatch | <pre>list(object({<br>    log_group_arn = string<br>    log_type      = string<br>  }))</pre> | `[]` | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |
@@ -59,8 +59,8 @@ This modules creates:
 
 | Name | Description |
 |------|-------------|
-| tamr\_es\_domain\_endpoint | Endpoint of ES domain created |
-| tamr\_es\_domain\_id | ID of the ES domain created |
+| tamr\_es\_domain\_endpoint | Endpoint of OpenSearch domain created |
+| tamr\_es\_domain\_id | ID of the OpenSearch domain created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

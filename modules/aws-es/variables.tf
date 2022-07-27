@@ -82,7 +82,7 @@ variable "kms_key_id" {
   default     = null
   type        = string
   description = <<EOF
-  The KMS key id to encrypt the Elasticsearch domain with.
+  The KMS key id to encrypt the OpenSearch domain with.
   If not specified then it defaults to using the aws/es service KMS key
   EOF
 }
