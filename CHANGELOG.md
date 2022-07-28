@@ -1,4 +1,7 @@
-# Tamr Terraform AWS Elasticsearch Repo
+# Tamr Terraform AWS OpenSearch Repo
+
+## v4.0.1 - July 27th 2022
+* Adjustments to the module based on the service changing to OpenSearch
 
 ## v4.0.0 - November 15th 2021
 * Replaces`logs_retention_in_days` for `log_group_name` variable for cloudwatch-logs module.

@@ -10,7 +10,7 @@ resource "aws_subnet" "es_subnet" {
 }
 
 module "sg-ports" {
-  #source = "git::https://github.com/Datatamer/terraform-aws-es.git//modules/es-ports?ref=2.0.0"
+  #source = "git::https://github.com/Datatamer/terraform-aws-opensearch.git//modules/es-ports?ref=3.0.0"
   source = "../../modules/es-ports"
 }
 
@@ -36,7 +36,7 @@ module "tamr-es-cluster" {
   depends_on = [aws_iam_service_linked_role.es]
 
   vpc_id             = aws_vpc.es_vpc.id
-  domain_name        = format("%s-elasticsearch", var.name-prefix)
+  domain_name        = format("%s-opensearch", var.name-prefix)
   subnet_ids         = [aws_subnet.es_subnet.id]
   security_group_ids = module.aws-sg.security_group_ids
   tags               = var.tags

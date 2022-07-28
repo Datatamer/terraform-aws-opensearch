@@ -1,5 +1,5 @@
-# AWS ES Module
-This is a terraform module for a new ES domain on AWS.
+# AWS OpenSearch Module
+This is a terraform module for a new OpenSearch domain on AWS.
 This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
@@ -8,7 +8,7 @@ This is the most basic example of what it would look like to use this module.
 
 ```
 module "tamr-es-cluster" {
-  source     = "git::https://github.com/Datatamer/terraform-aws-es//modules/aws-es?ref=1.0.1"
+  source     = "git::https://github.com/Datatamer/terraform-aws-opensearch//modules/aws-es?ref=3.0.1"
   subnet_ids = ["subnet-id"]
 }
 ```
@@ -35,19 +35,19 @@ This modules creates:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| subnet\_ids | List of subnet IDs for the ES domain to be created in | `list(string)` | n/a | yes |
+| subnet\_ids | List of subnet IDs for the OpenSearch domain to be created in | `list(string)` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
-| domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |
+| domain\_name | The name to give to the OpenSearch domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes.<br>  Iops is only valid when volume type is io1 | `number` | `null` | no |
 | ebs\_volume\_size | The size of EBS volumes attached to data nodes (in GB) | `number` | `100` | no |
 | ebs\_volume\_type | The type of EBS volumes attached to data nodes | `string` | `"gp2"` | no |
 | enforce\_https | Whether or not to require HTTPS on the domain endpoint | `bool` | `true` | no |
-| es\_version | Version of ES to deploy | `string` | `"6.8"` | no |
-| instance\_count | Number of instances to launch in the ES domain | `number` | `2` | no |
+| es\_version | Version of OpenSearch to deploy | `string` | `"6.8"` | no |
+| instance\_count | Number of instances to launch in the OpenSearch domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
-| kms\_key\_id | The KMS key id to encrypt the Elasticsearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
+| kms\_key\_id | The KMS key id to encrypt the OpenSearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
 | log\_publishing\_options | Set of objects containing values for publishing logs to cloudwatch | <pre>list(object({<br>    log_group_arn = string<br>    log_type      = string<br>  }))</pre> | `[]` | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |
@@ -59,8 +59,8 @@ This modules creates:
 
 | Name | Description |
 |------|-------------|
-| tamr\_es\_domain\_endpoint | Endpoint of ES domain created |
-| tamr\_es\_domain\_id | ID of the ES domain created |
+| tamr\_es\_domain\_endpoint | Endpoint of OpenSearch domain created |
+| tamr\_es\_domain\_id | ID of the OpenSearch domain created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

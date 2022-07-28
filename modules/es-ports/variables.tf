@@ -1,6 +1,6 @@
 variable "ports" {
   type        = list(number)
-  description = "Ports used by the Elasticsearch"
+  description = "Ports used by the OpenSearch"
   default = [
     80,  // HTTP
     443, // HTTPS

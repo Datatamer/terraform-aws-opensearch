@@ -38,7 +38,7 @@ module "tamr-es-cluster" {
   ]
   source             = "../../"
   vpc_id             = aws_vpc.es_vpc.id
-  domain_name        = format("%s-elasticsearch", var.name-prefix)
+  domain_name        = format("%s-opensearch", var.name-prefix)
   subnet_ids         = [aws_subnet.es_subnet.id]
   security_group_ids = module.aws-sg.security_group_ids
   log_types          = var.log_types

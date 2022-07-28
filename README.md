@@ -1,34 +1,36 @@
-# Tamr AWS Elasticsearch Terraform Module
-This terraform module creates an Elasticsearch (ES) domain on AWS.
+# Tamr AWS OpenSearch Terraform Module
+This terraform module creates an OpenSearch domain on AWS.
 
 **Prerequisite**
 
-This module requires an [IAM service linked role](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/slr-es.html) for ES on the AWS account.
+This module requires an [IAM service linked role](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/slr.html) for OpenSearch on the AWS account.
 
-To create an ES service role in terraform:
+To create an OpenSearch service role in terraform:
 ```
-resource "aws_iam_service_linked_role" "es-service-role" {
-  aws_service_name = "es.amazonaws.com"
+resource "aws_iam_service_linked_role" "opensearch-service-role" {
+  aws_service_name = "opensearchservice.amazonaws.com"
 }
 ```
 
+OpenSearch Service automatically creates a new OpenSearch service-linked role the first time you create an OpenSearch domain if you have permissions for the iam:CreateServiceLinkedRole action and the legacy Elasticsearch role doesn't exist in your account.
+
 There can be only one service linked role for per AWS account.
 
-You may run into an error like this when trying to remove the ES service linked role if there is still an Elasticsearch domain in the account:
+You may run into an error like this when trying to remove the service linked role if there is still an OpenSearch domain in the account:
 ```
 Error: Error waiting for role (arn:aws:iam::000000000000:role/aws-service-role/es.amazonaws.com/AWSServiceRoleForAmazonElasticsearchService) to be deleted: unexpected state 'FAILED', wanted target 'SUCCEEDED'.
 ```
 
-You will need to ensure all the domains are completely removed before attempting to remove the ES linked service role. If it appears like all the domains have already been removed, you can try again.
+You will need to ensure all the domains are completely removed before attempting to remove the service linked service role. If it appears like all the domains have already been removed, you can try again.
 
 # Examples
 ## Minimal
 Smallest complete fully working example. This example might require extra resources to run the example.
-- [Minimal](https://github.com/Datatamer/terraform-aws-es/tree/master/examples/minimal)
+- [Minimal](https://github.com/Datatamer/terraform-aws-opensearch/tree/master/examples/minimal)
 
 # Resources Created
 This module creates:
-* a new Elasticsearch domain in AWS
+* a new OpenSearch domain in AWS
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -46,11 +48,11 @@ No provider.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| subnet\_ids | List of subnet IDs for the ES domain to be created in | `list(string)` | n/a | yes |
+| subnet\_ids | List of subnet IDs for the OpenSearch domain to be created in | `list(string)` | n/a | yes |
 | vpc\_id | The ID of the VPC in which to attach the security group | `string` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
 | aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
-| domain\_name | The name to give to the ES domain | `string` | `"tamr-es-cluster"` | no |
+| domain\_name | The name to give to the OpenSearch domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes.<br>  Iops is only valid when volume type is io1 | `number` | `null` | no |
 | ebs\_volume\_size | The size of EBS volumes attached to data nodes (in GB) | `number` | `100` | no |
@@ -58,18 +60,18 @@ No provider.
 | enable\_http | If set to true, enables SSH | `bool` | `true` | no |
 | enable\_https | If set to true, enables SSH | `bool` | `true` | no |
 | enforce\_https | Whether or not to require HTTPS on the domain endpoint | `bool` | `true` | no |
-| es\_tags | [DEPRECATED: Use `tags` instead] Additional tags to be attached to the ES domain and associated resources. | `map(string)` | `{}` | no |
-| es\_version | Version of ES to deploy | `string` | `"6.8"` | no |
+| es\_tags | [DEPRECATED: Use `tags` instead] Additional tags to be attached to the OpenSearch domain and associated resources. | `map(string)` | `{}` | no |
+| es\_version | Version of OpenSearch to deploy | `string` | `"6.8"` | no |
 | ingress\_cidr\_blocks | CIDR blocks to attach to security groups for ingress | `list(string)` | `[]` | no |
-| ingress\_security\_groups | Existing security groups to attch to new security groups for ingress | `list(string)` | `[]` | no |
-| instance\_count | Number of instances to launch in the ES domain | `number` | `2` | no |
+| ingress\_security\_groups | Existing security groups to attach to new security groups for ingress | `list(string)` | `[]` | no |
+| instance\_count | Number of instances to launch in the OpenSearch domain | `number` | `2` | no |
 | instance\_type | Instance type of data nodes in the domain | `string` | `"c5.large.elasticsearch"` | no |
-| kms\_key\_id | The KMS key id to encrypt the Elasticsearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
-| log\_group\_name | The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to | `string` | `""` | no |
+| kms\_key\_id | The KMS key id to encrypt the OpenSearch domain with.<br>  If not specified then it defaults to using the aws/es service KMS key | `string` | `null` | no |
+| log\_group\_name | The name of an existent CloudWatch Log Group that OpenSearch will publish logs to | `string` | `""` | no |
 | log\_types | A list of log types that will be published to CloudWatch. Valid values are SEARCH\_SLOW\_LOGS, INDEX\_SLOW\_LOGS, ES\_APPLICATION\_LOGS and AUDIT\_LOGS. | `list(string)` | <pre>[<br>  "ES_APPLICATION_LOGS",<br>  "SEARCH_SLOW_LOGS",<br>  "INDEX_SLOW_LOGS"<br>]</pre> | no |
 | node\_to\_node\_encryption\_enabled | Whether to enable node-to-node encryption | `bool` | `true` | no |
 | revoke\_rules\_on\_delete | Whether to revoke rules from the SG upon deletion | `bool` | `true` | no |
-| security\_group\_ids | List of security group IDs to be applied to the ES domain | `list(string)` | `[]` | no |
+| security\_group\_ids | List of security group IDs to be applied to the OpenSearch domain | `list(string)` | `[]` | no |
 | sg\_name | Security Group to create | `string` | `"es-security-group"` | no |
 | sg\_tags | Additional tags to be attached to the security group | `map(string)` | `{}` | no |
 | snapshot\_start\_hour | Hour when an automated daily snapshot of the indices is taken | `number` | `0` | no |
@@ -93,7 +95,7 @@ This repo is based on:
 
 # Development
 ## Generating Docs
-Run `make gen` to generate the section of docs around terraform inputs, outputs and requirements.
+Run `make terraform/docs` to generate the section of docs around terraform inputs, outputs and requirements.
 
 ## Checkstyles
 Run `make lint`, this will run terraform fmt, in addition to a few other checks to detect whitespace issues.

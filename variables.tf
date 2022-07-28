@@ -1,19 +1,19 @@
 variable "domain_name" {
   default     = "tamr-es-cluster"
   type        = string
-  description = "The name to give to the ES domain"
+  description = "The name to give to the OpenSearch domain"
 }
 
 variable "es_version" {
   default     = "6.8"
   type        = string
-  description = "Version of ES to deploy"
+  description = "Version of OpenSearch to deploy"
 }
 
 variable "instance_count" {
   default     = 2
   type        = number
-  description = "Number of instances to launch in the ES domain"
+  description = "Number of instances to launch in the OpenSearch domain"
 }
 
 variable "instance_type" {
@@ -24,13 +24,13 @@ variable "instance_type" {
 
 variable "subnet_ids" {
   type        = list(string)
-  description = "List of subnet IDs for the ES domain to be created in"
+  description = "List of subnet IDs for the OpenSearch domain to be created in"
 }
 
 variable "security_group_ids" {
   default     = []
   type        = list(string)
-  description = "List of security group IDs to be applied to the ES domain"
+  description = "List of security group IDs to be applied to the OpenSearch domain"
 }
 
 variable "snapshot_start_hour" {
@@ -68,7 +68,7 @@ variable "ebs_volume_type" {
 
 variable "es_tags" {
   type        = map(string)
-  description = "[DEPRECATED: Use `tags` instead] Additional tags to be attached to the ES domain and associated resources."
+  description = "[DEPRECATED: Use `tags` instead] Additional tags to be attached to the OpenSearch domain and associated resources."
   default     = {}
 }
 
@@ -121,7 +121,7 @@ variable "ingress_cidr_blocks" {
 
 variable "ingress_security_groups" {
   type        = list(string)
-  description = "Existing security groups to attch to new security groups for ingress"
+  description = "Existing security groups to attach to new security groups for ingress"
   default     = []
 }
 
@@ -135,7 +135,7 @@ variable "kms_key_id" {
   default     = null
   type        = string
   description = <<EOF
-  The KMS key id to encrypt the Elasticsearch domain with.
+  The KMS key id to encrypt the OpenSearch domain with.
   If not specified then it defaults to using the aws/es service KMS key
   EOF
 }
@@ -180,6 +180,6 @@ variable "log_types" {
 
 variable "log_group_name" {
   type        = string
-  description = "The name of an existent CloudWatch Log Group that ElasticSearch will publish logs to"
+  description = "The name of an existent CloudWatch Log Group that OpenSearch will publish logs to"
   default     = ""
 }
