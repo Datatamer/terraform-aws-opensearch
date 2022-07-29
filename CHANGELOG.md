@@ -11,6 +11,8 @@
   * `aws_region`
 * Removes the following outputs from the main module:
   * `es_security_group_ids`
+* Changes to the defaults of the following input variables:
+  * `domain_name`
 
 ## v4.0.1 - July 27th 2022
 * Adjustments to the module based on the service changing to OpenSearch

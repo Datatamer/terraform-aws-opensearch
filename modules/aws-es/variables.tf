@@ -1,5 +1,4 @@
 variable "domain_name" {
-  default     = "tamr-es-cluster"
   type        = string
   description = "The name to give to the OpenSearch domain"
 }
