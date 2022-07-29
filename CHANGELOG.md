@@ -13,6 +13,7 @@
   * `es_security_group_ids`
 * Changes to the defaults of the following input variables:
   * `domain_name`
+* Allows using an AWS provider >= 4.9
 
 ## v4.0.1 - July 27th 2022
 * Adjustments to the module based on the service changing to OpenSearch
