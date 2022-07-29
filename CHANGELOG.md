@@ -8,7 +8,8 @@
   * `ingress_cidr_blocks`
   * `ingress_security_groups`
   * `sg_tags`
-
+* Removes the following outputs from the main module:
+  * `es_security_group_ids`
 
 ## v4.0.1 - July 27th 2022
 * Adjustments to the module based on the service changing to OpenSearch
