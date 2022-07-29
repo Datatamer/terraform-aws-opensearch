@@ -2,13 +2,13 @@
 
 ## v5.0.0 July 29th 2022
 * Removes the following input variables from the main module:
-  * `revoke_rules_on_delete`
-  * `enable_https`
+  * `aws_region`
   * `enable_http`
+  * `enable_https`
   * `ingress_cidr_blocks`
   * `ingress_security_groups`
+  * `revoke_rules_on_delete`
   * `sg_tags`
-  * `aws_region`
 * Removes the following outputs from the main module:
   * `es_security_group_ids`
 * Changes to the defaults of the following input variables:
