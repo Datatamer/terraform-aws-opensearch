@@ -78,12 +78,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "aws_region" {
-  default     = "us-east-1"
-  type        = string
-  description = "AWS region to launch in"
-}
-
 variable "vpc_id" {
   type        = string
   description = "The ID of the VPC in which to attach the security group"

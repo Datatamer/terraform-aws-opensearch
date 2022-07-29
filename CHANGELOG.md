@@ -8,6 +8,7 @@
   * `ingress_cidr_blocks`
   * `ingress_security_groups`
   * `sg_tags`
+  * `aws_region`
 * Removes the following outputs from the main module:
   * `es_security_group_ids`
 

@@ -72,12 +72,6 @@ variable "tags" {
   description = "A map of tags to add to all resources."
 }
 
-variable "aws_region" {
-  default     = "us-east-1"
-  type        = string
-  description = "AWS region to launch in"
-}
-
 variable "kms_key_id" {
   default     = null
   type        = string

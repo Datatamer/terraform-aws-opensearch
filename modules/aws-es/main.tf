@@ -1,3 +1,6 @@
+data "aws_region" "region" {}
+
+
 #tfsec:ignore:aws-elastic-search-enable-domain-logging tfsec:ignore:aws-elastic-search-enable-logging
 resource "aws_elasticsearch_domain" "tamr-es-cluster" {
   domain_name           = var.domain_name
@@ -61,7 +64,7 @@ data "aws_iam_policy_document" "es-access-policy" {
       "es:*"
     ]
     resources = [
-      "arn:${var.arn_partition}:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"
+      "arn:${var.arn_partition}:es:${data.aws_region.region.name}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"
     ]
 
     principals {

@@ -16,7 +16,6 @@ module "tamr-es-cluster" {
   ebs_volume_size                 = var.ebs_volume_size
   ebs_volume_type                 = var.ebs_volume_type
   tags                            = local.effective_tags
-  aws_region                      = var.aws_region
   kms_key_id                      = var.kms_key_id
   enforce_https                   = var.enforce_https
   tls_security_policy             = var.tls_security_policy
