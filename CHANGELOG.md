@@ -1,5 +1,20 @@
 # Tamr Terraform AWS OpenSearch Repo
 
+## v5.0.0 July 29th 2022
+* Removes the following input variables from the main module:
+  * `aws_region`
+  * `enable_http`
+  * `enable_https`
+  * `ingress_cidr_blocks`
+  * `ingress_security_groups`
+  * `revoke_rules_on_delete`
+  * `sg_tags`
+* Removes the following outputs from the main module:
+  * `es_security_group_ids`
+* Changes to the defaults of the following input variables:
+  * `domain_name`
+* Allows using an AWS provider >= 4.9
+
 ## v4.0.1 - July 27th 2022
 * Adjustments to the module based on the service changing to OpenSearch
 

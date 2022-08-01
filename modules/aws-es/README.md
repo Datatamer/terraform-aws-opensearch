@@ -22,23 +22,22 @@ This modules creates:
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
-| aws | >= 2.45.0 |
+| terraform | >= 0.13 |
+| aws | >= 3.36, !=4.0.0, !=4.1.0, !=4.2.0, !=4.3.0, !=4.4.0, !=4.5.0, !=4.6.0, !=4.7.0, !=4.8.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.45.0 |
+| aws | >= 3.36, !=4.0.0, !=4.1.0, !=4.2.0, !=4.3.0, !=4.4.0, !=4.5.0, !=4.6.0, !=4.7.0, !=4.8.0 |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| domain\_name | The name to give to the OpenSearch domain | `string` | n/a | yes |
 | subnet\_ids | List of subnet IDs for the OpenSearch domain to be created in | `list(string)` | n/a | yes |
 | arn\_partition | The partition in which the resource is located. A partition is a group of AWS Regions.<br>  Each AWS account is scoped to one partition.<br>  The following are the supported partitions:<br>    aws -AWS Regions<br>    aws-cn - China Regions<br>    aws-us-gov - AWS GovCloud (US) Regions | `string` | `"aws"` | no |
-| aws\_region | AWS region to launch in | `string` | `"us-east-1"` | no |
-| domain\_name | The name to give to the OpenSearch domain | `string` | `"tamr-es-cluster"` | no |
 | ebs\_enabled | Whether EBS volumes are attached to data nodes | `bool` | `true` | no |
 | ebs\_iops | The baseline I/O performance of EBS volumes attached to nodes.<br>  Iops is only valid when volume type is io1 | `number` | `null` | no |
 | ebs\_volume\_size | The size of EBS volumes attached to data nodes (in GB) | `number` | `100` | no |

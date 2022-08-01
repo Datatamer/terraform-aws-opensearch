@@ -1,5 +1,4 @@
 variable "domain_name" {
-  default     = "tamr-es-cluster"
   type        = string
   description = "The name to give to the OpenSearch domain"
 }
@@ -70,12 +69,6 @@ variable "tags" {
   default     = {}
   type        = map(string)
   description = "A map of tags to add to all resources."
-}
-
-variable "aws_region" {
-  default     = "us-east-1"
-  type        = string
-  description = "AWS region to launch in"
 }
 
 variable "kms_key_id" {
