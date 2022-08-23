@@ -1,15 +1,6 @@
 # Tamr AWS OpenSearch Ports Module
 This module returns a list of ports used by the OpenSearch Service on AWS.
 
-# Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "tamr-opensearch-ports" {
-  source = "git::https://github.com/Datatamer/terraform-aws-opensearch//modules/es-ports?ref=3.0.0"
-}
-```
-
 # Resources Created
 This modules creates no resources.
 
