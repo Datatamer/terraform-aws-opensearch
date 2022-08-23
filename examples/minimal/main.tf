@@ -10,20 +10,22 @@ resource "aws_subnet" "es_subnet" {
 }
 
 module "sg-ports" {
-  #source = "git::https://github.com/Datatamer/terraform-aws-opensearch.git//modules/es-ports?ref=3.0.0"
+  #source = "git::https://github.com/Datatamer/terraform-aws-opensearch.git//modules/es-ports?ref=6.0.0"
   source = "../../modules/es-ports"
 }
 
 module "aws-sg" {
-  source              = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
+  source              = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.1"
   vpc_id              = aws_vpc.es_vpc.id
   ingress_cidr_blocks = var.ingress_cidr_blocks
   egress_cidr_blocks = [
     "0.0.0.0/0"
   ]
-  ingress_ports  = module.sg-ports.ingress_ports
-  sg_name_prefix = var.name-prefix
-  tags           = var.tags
+  ingress_ports    = module.sg-ports.ingress_ports
+  sg_name_prefix   = var.name-prefix
+  ingress_protocol = "tcp"
+  egress_protocol  = "all"
+  tags             = var.tags
 }
 
 resource "aws_iam_service_linked_role" "es" {
@@ -35,11 +37,8 @@ module "tamr-es-cluster" {
   source     = "../../"
   depends_on = [aws_iam_service_linked_role.es]
 
-  vpc_id             = aws_vpc.es_vpc.id
   domain_name        = format("%s-opensearch", var.name-prefix)
   subnet_ids         = [aws_subnet.es_subnet.id]
   security_group_ids = module.aws-sg.security_group_ids
   tags               = var.tags
 }
-
-data "aws_region" "current" {}
