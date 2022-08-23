@@ -1,5 +1,14 @@
 # Tamr Terraform AWS OpenSearch Repo
 
+## v6.0.0 August 23rd 2022
+* Removes the following input variables from the main module:
+  * `vpc_id`
+* Removes the following input variables from the `cloudwatch-logs` module:
+  * `domain_name`
+  * `log_retention_in_days`
+  * `tags`
+* Removes unused variables from examples
+
 ## v5.0.0 July 29th 2022
 * Removes the following input variables from the main module:
   * `aws_region`
