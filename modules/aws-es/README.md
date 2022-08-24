@@ -1,17 +1,6 @@
 # AWS OpenSearch Module
-This is a terraform module for a new OpenSearch domain on AWS.
+This is a Terraform module for a new OpenSearch domain on AWS.
 This repo is laid out following the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
-
-# Examples
-An inline example implementation of the module is implemented in the examples folder.
-This is the most basic example of what it would look like to use this module.
-
-```
-module "tamr-es-cluster" {
-  source     = "git::https://github.com/Datatamer/terraform-aws-opensearch//modules/aws-es?ref=3.0.1"
-  subnet_ids = ["subnet-id"]
-}
-```
 
 # Resources Created
 This modules creates:

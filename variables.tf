@@ -77,11 +77,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "The ID of the VPC in which to attach the security group"
-}
-
 variable "kms_key_id" {
   default     = null
   type        = string

@@ -10,20 +10,22 @@ resource "aws_subnet" "es_subnet" {
 }
 
 module "sg-ports" {
-  #source = "git::https://github.com/Datatamer/terraform-aws-es.git//modules/es-ports?ref=2.0.0"
+  #source = "git::https://github.com/Datatamer/terraform-aws-opensearch.git//modules/es-ports?ref=6.0.0"
   source = "../../modules/es-ports"
 }
 
 module "aws-sg" {
-  source              = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=0.1.0"
+  source              = "git::git@github.com:Datatamer/terraform-aws-security-groups.git?ref=1.0.1"
   vpc_id              = aws_vpc.es_vpc.id
   ingress_cidr_blocks = var.ingress_cidr_blocks
   egress_cidr_blocks = [
     "0.0.0.0/0"
   ]
-  ingress_ports  = module.sg-ports.ingress_ports
-  sg_name_prefix = var.name-prefix
-  tags           = var.tags
+  ingress_ports    = module.sg-ports.ingress_ports
+  sg_name_prefix   = var.name-prefix
+  ingress_protocol = "tcp"
+  egress_protocol  = "all"
+  tags             = var.tags
 }
 
 resource "aws_iam_service_linked_role" "es" {
@@ -37,7 +39,6 @@ module "tamr-es-cluster" {
     aws_cloudwatch_log_group.es-logs
   ]
   source             = "../../"
-  vpc_id             = aws_vpc.es_vpc.id
   domain_name        = format("%s-opensearch", var.name-prefix)
   subnet_ids         = [aws_subnet.es_subnet.id]
   security_group_ids = module.aws-sg.security_group_ids
@@ -49,7 +50,4 @@ module "tamr-es-cluster" {
 #tfsec:ignore:aws-cloudwatch-log-group-customer-key
 resource "aws_cloudwatch_log_group" "es-logs" {
   name = format("%s-%s", var.name-prefix, "example-logs")
-
-  retention_in_days = var.log_retention_in_days
-  tags              = var.tags
 }
